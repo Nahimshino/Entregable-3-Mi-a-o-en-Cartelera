@@ -9,26 +9,28 @@ AsyncStorage. Épica en curso: **Mi año en cine** (`docs/prd/`, `docs/backlog/`
 
 ## Capas y carpetas
 
-| Carpeta | Responsabilidad |
-| :--- | :--- |
-| `src/screens/` | Pantallas. Solo UI: leen el contexto y llaman servicios; nunca importan Firebase |
-| `src/components/` | Piezas visuales reutilizables |
-| `src/context/` | `CarteleraContext`: usuario, lista, acciones y caché |
-| `src/services/` | Único lugar que usa Firebase, TMDB y AsyncStorage |
-| `src/dominio/` | Funciones puras de reglas de negocio (sin Firebase, sin `new Date()` del sistema) y sus tests |
-| `src/tema/` | Tokens de diseño: única fuente de colores, espacios y tamaños |
-| `src/types/`, `src/utils/` | Tipos del modelo y utilidades puras |
-| `docs/` | Auditoría, PRD, backlog, specs, diseño, verificación y uso de IA |
+| Carpeta                    | Responsabilidad                                                                               |
+| :------------------------- | :-------------------------------------------------------------------------------------------- |
+| `src/screens/`             | Pantallas. Solo UI: leen el contexto y llaman servicios; nunca importan Firebase              |
+| `src/components/`          | Piezas visuales reutilizables                                                                 |
+| `src/context/`             | `CarteleraContext`: usuario, lista, acciones y caché                                          |
+| `src/services/`            | Único lugar que usa Firebase, TMDB y AsyncStorage                                             |
+| `src/dominio/`             | Funciones puras de reglas de negocio (sin Firebase, sin `new Date()` del sistema) y sus tests |
+| `src/tema/`                | Tokens de diseño: única fuente de colores, espacios y tamaños                                 |
+| `src/types/`, `src/utils/` | Tipos del modelo y utilidades puras                                                           |
+| `docs/`                    | Auditoría, PRD, backlog, specs, diseño, verificación y uso de IA                              |
 
 ## Comandos de verificación
 
 ```bash
 npm test            # Vitest (dominio, reglas, colores fijos)
 npx tsc --noEmit    # tipos
-npm run lint        # ESLint de Expo
+npm run lint        # ESLint de Expo (3 errores conocidos del Proyecto 3, hallazgo A-11)
+npm run test:reglas # firestore.rules contra el emulador (requiere Java 21)
 ```
 
-`npm test` y `npx tsc --noEmit` deben pasar antes de cada commit de código.
+`npm test` y `npx tsc --noEmit` deben pasar antes de cada commit de código. `npm run test:reglas` debe pasar
+antes de cada commit que toque `firestore.rules`; las reglas se publican con `npm run reglas:publicar`.
 
 ## Reglas
 

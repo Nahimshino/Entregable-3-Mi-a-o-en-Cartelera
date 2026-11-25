@@ -13,7 +13,7 @@ import { AvisoSuave } from '../components/AvisoSuave';
 import { aniosDisponibles, resumenAnual } from '../dominio/resumenAnual';
 import type { PestanasParamList } from '../types/navegacion';
 import { formatearHoras, plural } from '../utils/formato';
-import { colores, espacio, peso, tipo } from '../tema';
+import { colores, espacio, interlineado, peso, tipo, tracking } from '../tema';
 
 /**
  * Mi año en cine (DESIGN.md §4). La pantalla solo muestra: el cálculo vive en src/dominio/resumenAnual.ts
@@ -124,6 +124,10 @@ export function MiAnioScreen() {
       <Text style={styles.encabezado} accessibilityRole="header">
         Mi año
       </Text>
+      {/* DESIGN.md §2.2: el display solo se usa para el año, como el titular de un afiche. */}
+      <Text style={styles.anio} accessibilityLabel={`Año ${anio}`}>
+        {anio}
+      </Text>
       {listo && <SelectorAnio anios={anios} seleccionado={anio} onCambiar={setAnio} />}
       {progreso && (
         <View style={styles.avisos}>
@@ -143,9 +147,19 @@ const styles = StyleSheet.create({
   encabezado: {
     color: colores.texto,
     fontSize: tipo.titulo,
-    fontWeight: peso.extra,
+    letterSpacing: tracking.titulo,
+    textTransform: 'uppercase',
+    fontWeight: peso.bold,
     paddingHorizontal: espacio.l,
     paddingTop: espacio.s,
+  },
+  anio: {
+    color: colores.texto,
+    fontSize: tipo.display,
+    lineHeight: interlineado.display,
+    letterSpacing: tracking.display,
+    fontWeight: peso.bold,
+    paddingHorizontal: espacio.l,
   },
   avisos: { paddingHorizontal: espacio.l },
   contenido: { padding: espacio.l, gap: espacio.m },

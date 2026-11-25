@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text } from 'react-native';
-import { ALTURA_TOCABLE, colores, espacio, peso } from '../tema';
+import { ALTURA_TOCABLE, colores, espacio, peso, radio, tipo, tracking } from '../tema';
 
 interface Props {
   texto: string;
@@ -24,13 +24,14 @@ const styles = StyleSheet.create({
   chip: {
     minHeight: ALTURA_TOCABLE,
     paddingHorizontal: espacio.l,
-    borderRadius: ALTURA_TOCABLE / 2,
+    borderRadius: radio.etiqueta,
+    backgroundColor: colores.fondo,
     borderWidth: 1,
     borderColor: colores.borde,
     justifyContent: 'center',
     alignItems: 'center',
   },
   activo: { backgroundColor: colores.primario, borderColor: colores.primario },
-  texto: { color: colores.texto, fontWeight: peso.semibold },
+  texto: { color: colores.texto, fontSize: tipo.secundario, letterSpacing: tracking.secundario, fontWeight: peso.bold },
   textoActivo: { color: colores.textoSobrePrimario },
 });

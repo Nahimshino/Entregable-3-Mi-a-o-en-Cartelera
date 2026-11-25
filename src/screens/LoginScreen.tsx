@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useCartelera } from '../context/CarteleraContext';
 import { Boton } from '../components/Boton';
 import { validarFormulario, type DatosFormulario, type ErroresFormulario } from '../utils/validaciones';
-import { ALTURA_TOCABLE, colores, espacio, icono, peso, radio, tipo } from '../tema';
+import { ALTURA_TOCABLE, colores, espacio, icono, peso, radio, tipo, tracking } from '../tema';
 
 type Modo = 'login' | 'registro';
 
@@ -141,33 +141,39 @@ const styles = StyleSheet.create({
   pantalla: { flex: 1, backgroundColor: colores.fondo },
   contenido: { padding: espacio.xl, gap: espacio.m, flexGrow: 1, justifyContent: 'center' },
   marca: { alignItems: 'center', marginBottom: espacio.xl, gap: espacio.xs },
-  nombreApp: { color: colores.texto, fontSize: tipo.marca, fontWeight: peso.extra },
-  lema: { color: colores.textoSuave, fontSize: tipo.cuerpo },
-  tituloForm: { color: colores.texto, fontSize: tipo.subtitulo, fontWeight: peso.bold },
+  nombreApp: { color: colores.texto, fontSize: tipo.marca, letterSpacing: tracking.marca, fontWeight: peso.bold },
+  lema: { color: colores.textoSuave, fontSize: tipo.cuerpo, letterSpacing: tracking.cuerpo },
+  tituloForm: {
+    color: colores.texto,
+    fontSize: tipo.subtitulo,
+    letterSpacing: tracking.subtitulo,
+    fontWeight: peso.bold,
+  },
   campo: { gap: espacio.xs },
-  etiqueta: { color: colores.textoSuave, fontSize: tipo.secundario },
+  etiqueta: { color: colores.textoSuave, fontSize: tipo.secundario, letterSpacing: tracking.secundario },
   input: {
-    minHeight: ALTURA_TOCABLE + 4,
+    minHeight: ALTURA_TOCABLE + espacio.xs,
     backgroundColor: colores.superficie,
-    borderRadius: radio.medio,
+    borderRadius: radio.campo,
     borderWidth: 1,
     borderColor: colores.borde,
     color: colores.texto,
     paddingHorizontal: espacio.m,
     fontSize: tipo.cuerpo,
+    letterSpacing: tracking.cuerpo,
   },
   inputError: { borderColor: colores.peligro },
-  error: { color: colores.peligro, fontSize: tipo.secundario },
+  error: { color: colores.peligro, fontSize: tipo.secundario, letterSpacing: tracking.secundario },
   errorServidor: {
     flexDirection: 'row',
     gap: espacio.s,
     alignItems: 'center',
     backgroundColor: colores.peligroSuave,
     padding: espacio.m,
-    borderRadius: radio.medio,
+    borderRadius: radio.tarjeta,
   },
   textoErrorServidor: { color: colores.peligro, flex: 1 },
   alternar: { minHeight: ALTURA_TOCABLE, justifyContent: 'center', alignItems: 'center' },
-  textoAlternar: { color: colores.textoSuave, fontSize: tipo.cuerpo },
+  textoAlternar: { color: colores.textoSuave, fontSize: tipo.cuerpo, letterSpacing: tracking.cuerpo },
   enlace: { color: colores.primario, fontWeight: peso.bold },
 });

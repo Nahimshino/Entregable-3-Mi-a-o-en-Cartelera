@@ -1,5 +1,5 @@
 import { ActivityIndicator, Pressable, StyleSheet, Text, type StyleProp, type ViewStyle } from 'react-native';
-import { ALTURA_TOCABLE, colores, espacio, peso, radio, tipo } from '../tema';
+import { ALTURA_TOCABLE, colores, espacio, peso, radio, tipo, tracking } from '../tema';
 
 type Variante = 'primario' | 'secundario' | 'peligro';
 
@@ -12,20 +12,13 @@ interface Props {
   estilo?: StyleProp<ViewStyle>;
 }
 
-const FONDO: Record<Variante, string> = {
-  primario: colores.primario,
-  secundario: colores.superficieAlta,
-  peligro: 'transparent',
-};
-
-const TEXTO: Record<Variante, string> = {
-  primario: colores.textoSobrePrimario,
-  secundario: colores.texto,
-  peligro: colores.peligro,
-};
+/** DESIGN.md §3: píldora llena (primario) o con contorno (secundario y peligro). Sin sombra. */
+const LLENO: Record<Variante, boolean> = { primario: true, secundario: false, peligro: false };
 
 export function Boton({ titulo, onPress, variante = 'primario', cargando, deshabilitado, estilo }: Props) {
   const inactivo = deshabilitado || cargando;
+  const lleno = LLENO[variante];
+  const colorTexto = lleno ? colores.textoSobrePrimario : colores.texto;
   return (
     <Pressable
       accessibilityRole="button"
@@ -34,15 +27,15 @@ export function Boton({ titulo, onPress, variante = 'primario', cargando, deshab
       disabled={inactivo}
       style={({ pressed }) => [
         styles.base,
-        { backgroundColor: FONDO[variante], opacity: inactivo ? 0.5 : pressed ? 0.8 : 1 },
-        variante === 'peligro' && styles.peligro,
+        lleno ? styles.lleno : styles.contorno,
+        { opacity: inactivo ? 0.5 : pressed ? 0.8 : 1 },
         estilo,
       ]}
     >
       {cargando ? (
-        <ActivityIndicator color={TEXTO[variante]} />
+        <ActivityIndicator color={colorTexto} />
       ) : (
-        <Text style={[styles.texto, { color: TEXTO[variante] }]}>{titulo}</Text>
+        <Text style={[styles.texto, { color: colorTexto }]}>{titulo}</Text>
       )}
     </Pressable>
   );
@@ -50,12 +43,13 @@ export function Boton({ titulo, onPress, variante = 'primario', cargando, deshab
 
 const styles = StyleSheet.create({
   base: {
-    minHeight: ALTURA_TOCABLE + 4,
-    borderRadius: radio.medio,
-    paddingHorizontal: espacio.l,
+    minHeight: ALTURA_TOCABLE + espacio.xs,
+    borderRadius: radio.boton,
+    paddingHorizontal: espacio.xl,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  peligro: { borderWidth: 1, borderColor: colores.peligro },
-  texto: { fontSize: tipo.cuerpo, fontWeight: peso.bold },
+  lleno: { backgroundColor: colores.primario },
+  contorno: { backgroundColor: 'transparent', borderWidth: 1, borderColor: colores.primario },
+  texto: { fontSize: tipo.nota, letterSpacing: tracking.nota, fontWeight: peso.bold, textTransform: 'uppercase' },
 });

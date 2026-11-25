@@ -8,11 +8,13 @@ interface Props {
   onCambiar?: (valor: number) => void;
   tamano?: number;
   deshabilitado?: boolean;
+  /** Color de las estrellas activas; por defecto colores.primario (papel sobre una banda negra). */
+  color?: string;
 }
 
 const VALORES = [1, 2, 3, 4, 5] as const;
 
-export function Estrellas({ valor, onCambiar, tamano = 18, deshabilitado }: Props) {
+export function Estrellas({ valor, onCambiar, tamano = 18, deshabilitado, color = colores.primario }: Props) {
   return (
     <View style={styles.fila} accessibilityLabel={`Calificación: ${valor ?? 0} de 5`}>
       {VALORES.map((n) => {
@@ -20,7 +22,7 @@ export function Estrellas({ valor, onCambiar, tamano = 18, deshabilitado }: Prop
           <Ionicons
             name={valor !== null && n <= valor ? 'star' : 'star-outline'}
             size={tamano}
-            color={deshabilitado ? colores.borde : colores.primario}
+            color={deshabilitado ? colores.borde : color}
           />
         );
         if (!onCambiar) return <View key={n}>{icono}</View>;

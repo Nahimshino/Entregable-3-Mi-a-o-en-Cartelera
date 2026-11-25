@@ -12,7 +12,7 @@ import type { DetalleObra } from '../types/tmdb';
 import type { AppStackParamList } from '../types/navegacion';
 import { ETIQUETA_ESTADO, ETIQUETA_TIPO } from '../types/lista';
 import { crearItemId } from '../utils/validaciones';
-import { colores, espacio, icono, peso, tipo } from '../tema';
+import { colores, espacio, icono, peso, radio, tipo, tracking } from '../tema';
 
 type Props = NativeStackScreenProps<AppStackParamList, 'Detalle'>;
 
@@ -156,19 +156,42 @@ const styles = StyleSheet.create({
   contenido: { padding: espacio.l, gap: espacio.m, paddingBottom: espacio.xl * 2 },
   cabecera: { flexDirection: 'row', gap: espacio.l },
   datos: { flex: 1, gap: espacio.s },
-  titulo: { color: colores.texto, fontSize: tipo.subtitulo, fontWeight: peso.extra },
-  meta: { color: colores.textoSuave, fontSize: tipo.secundario },
+  titulo: { color: colores.texto, fontSize: tipo.subtitulo, letterSpacing: tracking.subtitulo, fontWeight: peso.bold },
+  meta: { color: colores.textoSuave, fontSize: tipo.secundario, letterSpacing: tracking.secundario },
   calificacion: { flexDirection: 'row', alignItems: 'center', gap: espacio.xs, flexWrap: 'wrap' },
-  textoCalificacion: { color: colores.texto, fontSize: tipo.subtitulo, fontWeight: peso.extra },
-  votos: { color: colores.textoSuave, fontSize: tipo.nota, width: '100%' },
-  generos: { color: colores.textoSuave, fontSize: tipo.secundario },
+  textoCalificacion: {
+    color: colores.texto,
+    fontSize: tipo.subtitulo,
+    letterSpacing: tracking.subtitulo,
+    fontWeight: peso.bold,
+  },
+  votos: { color: colores.textoSuave, fontSize: tipo.nota, letterSpacing: tracking.nota, width: '100%' },
+  generos: { color: colores.textoSuave, fontSize: tipo.secundario, letterSpacing: tracking.secundario },
   enLista: { gap: espacio.s },
-  textoEnLista: { color: colores.exito, fontWeight: peso.semibold },
+  // Confirmación: la única superficie con color del sistema (DESIGN.md §2.1).
+  textoEnLista: {
+    alignSelf: 'flex-start',
+    backgroundColor: colores.confirmacion,
+    color: colores.texto,
+    fontSize: tipo.secundario,
+    letterSpacing: tracking.secundario,
+    fontWeight: peso.bold,
+    paddingHorizontal: espacio.l,
+    paddingVertical: espacio.s,
+    borderRadius: radio.etiqueta,
+    overflow: 'hidden',
+  },
   error: { color: colores.peligro },
-  seccion: { color: colores.texto, fontSize: tipo.destacado, fontWeight: peso.bold, marginTop: espacio.s },
-  sinopsis: { color: colores.texto, fontSize: tipo.cuerpo, lineHeight: 22 },
-  sinDatos: { color: colores.textoSuave, fontSize: tipo.cuerpo, fontStyle: 'italic' },
-  actor: { width: 80, gap: espacio.xxs },
-  nombreActor: { color: colores.texto, fontSize: tipo.nota, fontWeight: peso.semibold },
-  personaje: { color: colores.textoSuave, fontSize: tipo.nota },
+  seccion: {
+    color: colores.texto,
+    fontSize: tipo.destacado,
+    letterSpacing: tracking.destacado,
+    fontWeight: peso.bold,
+    marginTop: espacio.s,
+  },
+  sinopsis: { color: colores.texto, fontSize: tipo.cuerpo, letterSpacing: tracking.cuerpo, lineHeight: 22 },
+  sinDatos: { color: colores.textoSuave, fontSize: tipo.cuerpo, letterSpacing: tracking.cuerpo, fontStyle: 'italic' },
+  actor: { width: 80, gap: espacio.xs },
+  nombreActor: { color: colores.texto, fontSize: tipo.nota, letterSpacing: tracking.nota, fontWeight: peso.bold },
+  personaje: { color: colores.textoSuave, fontSize: tipo.nota, letterSpacing: tracking.nota },
 });

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { colores, espacio, peso, radio, tipo } from '../tema';
+import { colores, espacio, peso, radio, tipo, tracking } from '../tema';
 import { INICIALES_MES, NOMBRES_MES, plural } from '../utils/formato';
 
 interface Props {
@@ -43,8 +43,8 @@ export function BarrasPorMes({ obrasPorMes, mesTop }: Props) {
 }
 
 const styles = StyleSheet.create({
-  tarjeta: { backgroundColor: colores.superficie, borderRadius: radio.grande, padding: espacio.l, gap: espacio.m },
-  titulo: { color: colores.texto, fontSize: tipo.cuerpo, fontWeight: peso.bold },
+  tarjeta: { backgroundColor: colores.superficie, borderRadius: radio.tarjeta, padding: espacio.l, gap: espacio.m },
+  titulo: { color: colores.texto, fontSize: tipo.cuerpo, letterSpacing: tracking.cuerpo, fontWeight: peso.bold },
   fila: { flexDirection: 'row', alignItems: 'flex-end', gap: espacio.xs, height: ALTO_MAXIMO + tipo.nota + espacio.l },
   columna: { flex: 1, alignItems: 'center', justifyContent: 'flex-end', gap: espacio.xs },
   barra: {
@@ -55,6 +55,6 @@ const styles = StyleSheet.create({
   },
   barraCero: { backgroundColor: colores.barraVacia },
   barraTop: { backgroundColor: colores.primario },
-  mes: { color: colores.textoSuave, fontSize: tipo.nota },
+  mes: { color: colores.textoSuave, fontSize: tipo.nota, letterSpacing: tracking.nota },
   mesTop: { color: colores.primario, fontWeight: peso.bold },
 });

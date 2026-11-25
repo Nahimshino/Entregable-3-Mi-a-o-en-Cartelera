@@ -1,7 +1,7 @@
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Boton } from './Boton';
-import { colores, espacio, icono, peso, tipo } from '../tema';
+import { colores, espacio, icono, peso, tipo, tracking } from '../tema';
 
 // En Vacio la prop `icono` es el nombre del ícono; el tamaño se toma antes para no confundirlos.
 const TAMANO_ICONO_VACIO = icono.grande;
@@ -59,8 +59,14 @@ export function AvisoSinConexion({ fecha }: { fecha: number }) {
 
 const styles = StyleSheet.create({
   centro: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: espacio.xl, gap: espacio.m },
-  titulo: { color: colores.texto, fontSize: tipo.destacado, fontWeight: peso.bold, textAlign: 'center' },
-  texto: { color: colores.textoSuave, fontSize: tipo.cuerpo, textAlign: 'center' },
+  titulo: {
+    color: colores.texto,
+    fontSize: tipo.destacado,
+    letterSpacing: tracking.destacado,
+    fontWeight: peso.bold,
+    textAlign: 'center',
+  },
+  texto: { color: colores.textoSuave, fontSize: tipo.cuerpo, letterSpacing: tracking.cuerpo, textAlign: 'center' },
   aviso: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -69,5 +75,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: espacio.l,
     paddingVertical: espacio.s,
   },
-  textoAviso: { color: colores.fondo, fontWeight: peso.semibold, flex: 1 },
+  textoAviso: { color: colores.fondo, fontWeight: peso.bold, flex: 1 },
 });

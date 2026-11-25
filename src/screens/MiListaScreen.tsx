@@ -19,7 +19,7 @@ import {
   type FiltroTipo,
 } from '../types/lista';
 import type { AppStackParamList } from '../types/navegacion';
-import { colores, espacio, icono, peso, radio, tipo } from '../tema';
+import { colores, espacio, icono, peso, radio, tipo, tracking } from '../tema';
 
 const COLOR_ESTADO: Record<EstadoVisto, string> = {
   por_ver: colores.estadoPorVer,
@@ -166,7 +166,9 @@ const styles = StyleSheet.create({
   encabezado: {
     color: colores.texto,
     fontSize: tipo.titulo,
-    fontWeight: peso.extra,
+    letterSpacing: tracking.titulo,
+    textTransform: 'uppercase',
+    fontWeight: peso.bold,
     paddingHorizontal: espacio.l,
     paddingTop: espacio.s,
   },
@@ -178,14 +180,19 @@ const styles = StyleSheet.create({
     gap: espacio.m,
     padding: espacio.m,
     backgroundColor: colores.superficie,
-    borderRadius: radio.grande,
+    borderRadius: radio.tarjeta,
     alignItems: 'center',
   },
-  info: { flex: 1, gap: espacio.xxs },
-  titulo: { color: colores.texto, fontSize: tipo.cuerpo, fontWeight: peso.bold },
-  meta: { color: colores.textoSuave, fontSize: tipo.secundario },
+  info: { flex: 1, gap: espacio.xs },
+  titulo: { color: colores.texto, fontSize: tipo.cuerpo, letterSpacing: tracking.cuerpo, fontWeight: peso.bold },
+  meta: { color: colores.textoSuave, fontSize: tipo.secundario, letterSpacing: tracking.secundario },
   estado: { flexDirection: 'row', alignItems: 'center', gap: espacio.xs },
-  textoEstado: { fontSize: tipo.secundario, fontWeight: peso.bold },
-  sinCalificar: { color: colores.textoSuave, fontSize: tipo.nota, fontStyle: 'italic' },
-  comentario: { color: colores.textoSuave, fontSize: tipo.secundario, fontStyle: 'italic' },
+  textoEstado: { fontSize: tipo.secundario, letterSpacing: tracking.secundario, fontWeight: peso.bold },
+  sinCalificar: { color: colores.textoSuave, fontSize: tipo.nota, letterSpacing: tracking.nota, fontStyle: 'italic' },
+  comentario: {
+    color: colores.textoSuave,
+    fontSize: tipo.secundario,
+    letterSpacing: tracking.secundario,
+    fontStyle: 'italic',
+  },
 });

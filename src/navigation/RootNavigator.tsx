@@ -1,4 +1,4 @@
-import { NavigationContainer, DarkTheme, type Theme } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme, type Theme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
@@ -19,12 +19,12 @@ const AppStack = createNativeStackNavigator<AppStackParamList>();
 const AuthStack = createNativeStackNavigator<AuthStackParamList>();
 
 const tema: Theme = {
-  ...DarkTheme,
+  ...DefaultTheme,
   colors: {
-    ...DarkTheme.colors,
+    ...DefaultTheme.colors,
     primary: colores.primario,
     background: colores.fondo,
-    card: colores.superficie,
+    card: colores.fondo,
     text: colores.texto,
     border: colores.borde,
   },

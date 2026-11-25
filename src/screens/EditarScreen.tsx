@@ -9,7 +9,7 @@ import { Boton } from '../components/Boton';
 import { Vacio } from '../components/Estado';
 import { ESTADOS, ETIQUETA_ESTADO, ETIQUETA_TIPO, MAX_COMENTARIO, type EstadoVisto } from '../types/lista';
 import type { AppStackParamList } from '../types/navegacion';
-import { colores, espacio, peso, radio, tipo } from '../tema';
+import { colores, espacio, peso, radio, tipo, tracking } from '../tema';
 
 type Props = NativeStackScreenProps<AppStackParamList, 'Editar'>;
 
@@ -136,20 +136,27 @@ const styles = StyleSheet.create({
   pantalla: { flex: 1, backgroundColor: colores.fondo },
   contenido: { padding: espacio.l, gap: espacio.m, paddingBottom: espacio.xl * 2 },
   cabecera: { flexDirection: 'row', gap: espacio.m, alignItems: 'center' },
-  titulo: { color: colores.texto, fontSize: tipo.subtitulo, fontWeight: peso.extra },
-  meta: { color: colores.textoSuave, fontSize: tipo.secundario },
-  seccion: { color: colores.texto, fontSize: tipo.cuerpo, fontWeight: peso.bold, marginTop: espacio.s },
+  titulo: { color: colores.texto, fontSize: tipo.subtitulo, letterSpacing: tracking.subtitulo, fontWeight: peso.bold },
+  meta: { color: colores.textoSuave, fontSize: tipo.secundario, letterSpacing: tracking.secundario },
+  seccion: {
+    color: colores.texto,
+    fontSize: tipo.cuerpo,
+    letterSpacing: tracking.cuerpo,
+    fontWeight: peso.bold,
+    marginTop: espacio.s,
+  },
   fila: { flexDirection: 'row', gap: espacio.s, flexWrap: 'wrap' },
-  ayuda: { color: colores.textoSuave, fontSize: tipo.secundario },
+  ayuda: { color: colores.textoSuave, fontSize: tipo.secundario, letterSpacing: tracking.secundario },
   comentario: {
     minHeight: 110,
     backgroundColor: colores.superficie,
-    borderRadius: radio.medio,
+    borderRadius: radio.campo,
     borderWidth: 1,
     borderColor: colores.borde,
     color: colores.texto,
     padding: espacio.m,
     fontSize: tipo.cuerpo,
+    letterSpacing: tracking.cuerpo,
     textAlignVertical: 'top',
   },
   error: { color: colores.peligro },

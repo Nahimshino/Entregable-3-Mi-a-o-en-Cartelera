@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { colores, espacio, radio, tipo } from '../tema';
+import { colores, espacio, radio, tipo, tracking } from '../tema';
 
 interface Props {
   texto: string;
@@ -29,7 +29,7 @@ export function AvisoSuave({ texto, progreso }: Props) {
 
 const styles = StyleSheet.create({
   aviso: {
-    backgroundColor: colores.superficieAlta,
+    backgroundColor: colores.superficie,
     borderLeftWidth: 3,
     borderLeftColor: colores.aviso,
     borderRadius: radio.chico,
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: espacio.m,
     gap: espacio.s,
   },
-  texto: { color: colores.textoSuave, fontSize: tipo.secundario },
+  texto: { color: colores.textoSuave, fontSize: tipo.secundario, letterSpacing: tracking.secundario },
   pista: {
     height: ALTO_PROGRESO,
     backgroundColor: colores.barraVacia,

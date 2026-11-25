@@ -12,7 +12,7 @@ export default function App() {
         <View style={{ flex: 1, backgroundColor: colores.fondo }}>
           <RootNavigator />
         </View>
-        <StatusBar style="light" />
+        <StatusBar style="dark" />
       </CarteleraProvider>
     </SafeAreaProvider>
   );

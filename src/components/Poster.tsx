@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { urlImagen } from '../services/tmdbService';
 import type { TamanoImagen } from '../types/tmdb';
-import { colores, espacio, tipo } from '../tema';
+import { colores, espacio, radio, tipo, tracking } from '../tema';
 
 interface Props {
   path: string | null;
@@ -16,7 +16,7 @@ interface Props {
 export function Poster({ path, ancho, tamano = 'chico', clase = 'poster' }: Props) {
   const [fallo, setFallo] = useState(false);
   const uri = urlImagen(path, tamano, clase);
-  const dimensiones = { width: ancho, height: ancho * 1.5, borderRadius: ancho > 100 ? 12 : 6 };
+  const dimensiones = { width: ancho, height: ancho * 1.5, borderRadius: radio.tarjeta };
 
   if (!uri || fallo) {
     return (
@@ -30,12 +30,12 @@ export function Poster({ path, ancho, tamano = 'chico', clase = 'poster' }: Prop
 }
 
 const styles = StyleSheet.create({
-  imagen: { backgroundColor: colores.superficieAlta },
+  imagen: { backgroundColor: colores.superficie },
   relleno: {
-    backgroundColor: colores.superficieAlta,
+    backgroundColor: colores.superficie,
     alignItems: 'center',
     justifyContent: 'center',
     gap: espacio.xs,
   },
-  textoRelleno: { color: colores.textoSuave, fontSize: tipo.nota },
+  textoRelleno: { color: colores.textoSuave, fontSize: tipo.nota, letterSpacing: tracking.nota },
 });

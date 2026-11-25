@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { colores, espacio, peso, radio, tipo } from '../tema';
+import { colores, espacio, peso, radio, tipo, tracking } from '../tema';
 
 interface Props {
   valor: string;
@@ -26,12 +26,18 @@ const styles = StyleSheet.create({
   tarjeta: {
     flex: 1,
     backgroundColor: colores.superficie,
-    borderRadius: radio.grande,
+    borderRadius: radio.tarjeta,
     padding: espacio.l,
-    gap: espacio.xxs,
+    gap: espacio.xs,
   },
-  valor: { color: colores.dato, fontSize: tipo.dato, fontWeight: peso.extra, fontVariant: ['tabular-nums'] },
-  valorTexto: { fontSize: tipo.subtitulo, fontWeight: peso.bold },
-  etiqueta: { color: colores.textoSuave, fontSize: tipo.secundario },
-  nota: { color: colores.textoSuave, fontSize: tipo.nota, marginTop: espacio.xs },
+  valor: {
+    color: colores.dato,
+    fontSize: tipo.dato,
+    letterSpacing: tracking.dato,
+    fontWeight: peso.bold,
+    fontVariant: ['tabular-nums'],
+  },
+  valorTexto: { fontSize: tipo.destacado, letterSpacing: tracking.destacado, fontWeight: peso.bold },
+  etiqueta: { color: colores.textoSuave, fontSize: tipo.secundario, letterSpacing: tracking.secundario },
+  nota: { color: colores.textoSuave, fontSize: tipo.nota, letterSpacing: tracking.nota, marginTop: espacio.xs },
 });

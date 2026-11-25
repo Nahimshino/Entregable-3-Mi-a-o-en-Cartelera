@@ -6,7 +6,7 @@ import Constants from 'expo-constants';
 import { useCartelera } from '../context/CarteleraContext';
 import { LogoTmdb } from '../components/LogoTmdb';
 import { Boton } from '../components/Boton';
-import { ALTURA_TOCABLE, colores, espacio, icono, peso, radio, tipo } from '../tema';
+import { ALTURA_TOCABLE, colores, espacio, icono, peso, radio, tipo, tracking } from '../tema';
 
 export function AcercaDeScreen() {
   const { usuario, lista, salir } = useCartelera();
@@ -88,12 +88,19 @@ const styles = StyleSheet.create({
   pantalla: { flex: 1, backgroundColor: colores.fondo },
   contenido: { padding: espacio.l, gap: espacio.l, paddingBottom: espacio.xl * 2 },
   marca: { alignItems: 'center', gap: espacio.xs, paddingVertical: espacio.l },
-  nombreApp: { color: colores.texto, fontSize: tipo.titulo, fontWeight: peso.extra, textAlign: 'center' },
+  nombreApp: {
+    color: colores.texto,
+    fontSize: tipo.titulo,
+    letterSpacing: tracking.titulo,
+    textTransform: 'uppercase',
+    fontWeight: peso.bold,
+    textAlign: 'center',
+  },
   version: { color: colores.textoSuave },
-  tarjeta: { backgroundColor: colores.superficie, borderRadius: radio.grande, padding: espacio.l, gap: espacio.m },
-  seccion: { color: colores.texto, fontSize: tipo.cuerpo, fontWeight: peso.bold },
-  texto: { color: colores.textoSuave, fontSize: tipo.secundario, lineHeight: 20 },
+  tarjeta: { backgroundColor: colores.superficie, borderRadius: radio.tarjeta, padding: espacio.l, gap: espacio.m },
+  seccion: { color: colores.texto, fontSize: tipo.cuerpo, letterSpacing: tracking.cuerpo, fontWeight: peso.bold },
+  texto: { color: colores.textoSuave, fontSize: tipo.secundario, letterSpacing: tracking.secundario, lineHeight: 20 },
   atribucion: { flexDirection: 'row', alignItems: 'center', gap: espacio.m },
   enlace: { flexDirection: 'row', alignItems: 'center', gap: espacio.xs, minHeight: ALTURA_TOCABLE },
-  textoEnlace: { color: colores.primario, fontWeight: peso.semibold },
+  textoEnlace: { color: colores.primario, fontWeight: peso.bold },
 });

@@ -13,7 +13,7 @@ import type { PaginaBusqueda, ResultadoBusqueda } from '../types/tmdb';
 import type { AppStackParamList } from '../types/navegacion';
 import { ETIQUETA_ESTADO, ETIQUETA_TIPO } from '../types/lista';
 import { crearItemId } from '../utils/validaciones';
-import { ALTURA_TOCABLE, colores, espacio, icono, peso, radio, tipo } from '../tema';
+import { ALTURA_TOCABLE, colores, espacio, icono, peso, radio, tipo, tracking } from '../tema';
 
 const ESPERA_ESCRITURA_MS = 500;
 
@@ -169,7 +169,9 @@ const styles = StyleSheet.create({
   encabezado: {
     color: colores.texto,
     fontSize: tipo.titulo,
-    fontWeight: peso.extra,
+    letterSpacing: tracking.titulo,
+    textTransform: 'uppercase',
+    fontWeight: peso.bold,
     paddingHorizontal: espacio.l,
     paddingTop: espacio.s,
   },
@@ -179,12 +181,18 @@ const styles = StyleSheet.create({
     margin: espacio.l,
     paddingLeft: espacio.m,
     backgroundColor: colores.superficie,
-    borderRadius: radio.grande,
+    borderRadius: radio.tarjeta,
     borderWidth: 1,
     borderColor: colores.borde,
     gap: espacio.s,
   },
-  input: { flex: 1, minHeight: ALTURA_TOCABLE + 4, color: colores.texto, fontSize: tipo.cuerpo },
+  input: {
+    flex: 1,
+    minHeight: ALTURA_TOCABLE + 4,
+    color: colores.texto,
+    fontSize: tipo.cuerpo,
+    letterSpacing: tracking.cuerpo,
+  },
   limpiar: { minWidth: ALTURA_TOCABLE, minHeight: ALTURA_TOCABLE, alignItems: 'center', justifyContent: 'center' },
   lista: { paddingHorizontal: espacio.l, paddingBottom: espacio.xl, gap: espacio.s },
   fila: {
@@ -193,10 +201,16 @@ const styles = StyleSheet.create({
     gap: espacio.m,
     padding: espacio.s,
     backgroundColor: colores.superficie,
-    borderRadius: radio.grande,
+    borderRadius: radio.tarjeta,
   },
-  info: { flex: 1, gap: espacio.xxs },
-  titulo: { color: colores.texto, fontSize: tipo.cuerpo, fontWeight: peso.bold },
-  meta: { color: colores.textoSuave, fontSize: tipo.secundario },
-  enLista: { color: colores.exito, fontSize: tipo.secundario, marginTop: espacio.xxs },
+  info: { flex: 1, gap: espacio.xs },
+  titulo: { color: colores.texto, fontSize: tipo.cuerpo, letterSpacing: tracking.cuerpo, fontWeight: peso.bold },
+  meta: { color: colores.textoSuave, fontSize: tipo.secundario, letterSpacing: tracking.secundario },
+  enLista: {
+    color: colores.exito,
+    fontSize: tipo.secundario,
+    letterSpacing: tracking.secundario,
+    fontWeight: peso.bold,
+    marginTop: espacio.xs,
+  },
 });

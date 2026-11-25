@@ -4,7 +4,7 @@ App móvil (React Native + Expo, TypeScript) para buscar películas y series en 
 
 ## Entregable 3: épica «Mi año en cine»
 
-Sobre el Proyecto 3 (etiqueta `p3-final`) se agregó, en la rama `epica-mi-anio`, una pestaña **Mi año** que
+Sobre el Proyecto 3 (etiqueta `p3-final`) se agregó, en la rama `main`, una pestaña **Mi año** que
 resume lo visto en un año: obras (películas y series), horas de cine, género y director más vistos, mes más
 activo con una barra por mes, obra destacada y selector de año.
 
@@ -125,7 +125,6 @@ Requisitos: Node 22.12+ o 24+ (lo exige Vitest), app **Expo Go** en el teléfono
 ```bash
 git clone https://github.com/Nahimshino/Entregable-3-Mi-a-o-en-Cartelera.git
 cd Entregable-3-Mi-a-o-en-Cartelera
-git checkout epica-mi-anio
 npm install
 cp .env.example .env     # y completar los valores
 npm run dev              # equivale a: npx expo start
@@ -158,8 +157,8 @@ This product uses the TMDB API but is not endorsed or certified by TMDB. Datos e
 
 ### Capturas de la app (móvil)
 
-| Iniciar sesión                                      | Buscar                                                    | Resultados de búsqueda                                         | Mi lista vacía                                               |
-| --------------------------------------------------- | --------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------ |
+| Iniciar sesión                                     | Buscar                                                    | Resultados de búsqueda                                         | Mi lista vacía                                              |
+| -------------------------------------------------- | --------------------------------------------------------- | -------------------------------------------------------------- | ----------------------------------------------------------- |
 | <img src="docs/capturas/01-login.png" width="180"> | <img src="docs/capturas/02-buscar-vacio.png" width="180"> | <img src="docs/capturas/03-buscar-resultados.png" width="180"> | <img src="docs/capturas/04-mi-lista-vacia.png" width="180"> |
 
 | Mi lista con películas                                          | Mi lista con una serie                                          | Filtro por series                                                   | Acerca de                                              |

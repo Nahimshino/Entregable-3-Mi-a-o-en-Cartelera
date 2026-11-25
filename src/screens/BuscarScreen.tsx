@@ -13,7 +13,7 @@ import type { PaginaBusqueda, ResultadoBusqueda } from '../types/tmdb';
 import type { AppStackParamList } from '../types/navegacion';
 import { ETIQUETA_ESTADO, ETIQUETA_TIPO } from '../types/lista';
 import { crearItemId } from '../utils/validaciones';
-import { ALTURA_TOCABLE, colores, espacio } from '../tema';
+import { ALTURA_TOCABLE, colores, espacio, icono, peso, radio, tipo } from '../tema';
 
 const ESPERA_ESCRITURA_MS = 500;
 
@@ -102,7 +102,9 @@ export function BuscarScreen() {
             onEndReached={() => void cargarMas()}
             onEndReachedThreshold={0.5}
             keyboardDismissMode="on-drag"
-            ListFooterComponent={cargandoMas ? <ActivityIndicator color={colores.primario} style={{ margin: 16 }} /> : undefined}
+            ListFooterComponent={
+              cargandoMas ? <ActivityIndicator color={colores.primario} style={{ margin: espacio.l }} /> : undefined
+            }
             renderItem={({ item }) => {
               const enLista = buscarEnLista(crearItemId(item.tipo, item.id));
               return (
@@ -122,11 +124,12 @@ export function BuscarScreen() {
                     </Text>
                     {enLista && (
                       <Text style={styles.enLista}>
-                        <Ionicons name="checkmark-circle" size={14} /> En tu lista · {ETIQUETA_ESTADO[enLista.estado]}
+                        <Ionicons name="checkmark-circle" size={icono.chico} /> En tu lista ·{' '}
+                        {ETIQUETA_ESTADO[enLista.estado]}
                       </Text>
                     )}
                   </View>
-                  <Ionicons name="chevron-forward" size={20} color={colores.textoSuave} />
+                  <Ionicons name="chevron-forward" size={icono.medio} color={colores.textoSuave} />
                 </Pressable>
               );
             }}
@@ -139,7 +142,7 @@ export function BuscarScreen() {
     <SafeAreaView style={styles.pantalla} edges={['top']}>
       <Text style={styles.encabezado}>Buscar</Text>
       <View style={styles.buscador}>
-        <Ionicons name="search" size={20} color={colores.textoSuave} />
+        <Ionicons name="search" size={icono.medio} color={colores.textoSuave} />
         <TextInput
           value={texto}
           onChangeText={setTexto}
@@ -152,7 +155,7 @@ export function BuscarScreen() {
         />
         {texto.length > 0 && (
           <Pressable onPress={() => setTexto('')} style={styles.limpiar} accessibilityLabel="Borrar búsqueda">
-            <Ionicons name="close-circle" size={20} color={colores.textoSuave} />
+            <Ionicons name="close-circle" size={icono.medio} color={colores.textoSuave} />
           </Pressable>
         )}
       </View>
@@ -163,19 +166,25 @@ export function BuscarScreen() {
 
 const styles = StyleSheet.create({
   pantalla: { flex: 1, backgroundColor: colores.fondo },
-  encabezado: { color: colores.texto, fontSize: 28, fontWeight: '800', paddingHorizontal: espacio.l, paddingTop: espacio.s },
+  encabezado: {
+    color: colores.texto,
+    fontSize: tipo.titulo,
+    fontWeight: peso.extra,
+    paddingHorizontal: espacio.l,
+    paddingTop: espacio.s,
+  },
   buscador: {
     flexDirection: 'row',
     alignItems: 'center',
     margin: espacio.l,
     paddingLeft: espacio.m,
     backgroundColor: colores.superficie,
-    borderRadius: 12,
+    borderRadius: radio.grande,
     borderWidth: 1,
     borderColor: colores.borde,
     gap: espacio.s,
   },
-  input: { flex: 1, minHeight: ALTURA_TOCABLE + 4, color: colores.texto, fontSize: 16 },
+  input: { flex: 1, minHeight: ALTURA_TOCABLE + 4, color: colores.texto, fontSize: tipo.cuerpo },
   limpiar: { minWidth: ALTURA_TOCABLE, minHeight: ALTURA_TOCABLE, alignItems: 'center', justifyContent: 'center' },
   lista: { paddingHorizontal: espacio.l, paddingBottom: espacio.xl, gap: espacio.s },
   fila: {
@@ -184,10 +193,10 @@ const styles = StyleSheet.create({
     gap: espacio.m,
     padding: espacio.s,
     backgroundColor: colores.superficie,
-    borderRadius: 12,
+    borderRadius: radio.grande,
   },
-  info: { flex: 1, gap: 2 },
-  titulo: { color: colores.texto, fontSize: 16, fontWeight: '700' },
-  meta: { color: colores.textoSuave, fontSize: 14 },
-  enLista: { color: colores.exito, fontSize: 13, marginTop: 2 },
+  info: { flex: 1, gap: espacio.xxs },
+  titulo: { color: colores.texto, fontSize: tipo.cuerpo, fontWeight: peso.bold },
+  meta: { color: colores.textoSuave, fontSize: tipo.secundario },
+  enLista: { color: colores.exito, fontSize: tipo.secundario, marginTop: espacio.xxs },
 });

@@ -1,5 +1,5 @@
 import { ActivityIndicator, Pressable, StyleSheet, Text, type StyleProp, type ViewStyle } from 'react-native';
-import { ALTURA_TOCABLE, colores, espacio } from '../tema';
+import { ALTURA_TOCABLE, colores, espacio, peso, radio, tipo } from '../tema';
 
 type Variante = 'primario' | 'secundario' | 'peligro';
 
@@ -51,11 +51,11 @@ export function Boton({ titulo, onPress, variante = 'primario', cargando, deshab
 const styles = StyleSheet.create({
   base: {
     minHeight: ALTURA_TOCABLE + 4,
-    borderRadius: 10,
+    borderRadius: radio.medio,
     paddingHorizontal: espacio.l,
     alignItems: 'center',
     justifyContent: 'center',
   },
   peligro: { borderWidth: 1, borderColor: colores.peligro },
-  texto: { fontSize: 16, fontWeight: '700' },
+  texto: { fontSize: tipo.cuerpo, fontWeight: peso.bold },
 });

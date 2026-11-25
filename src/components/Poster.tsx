@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { urlImagen } from '../services/tmdbService';
 import type { TamanoImagen } from '../types/tmdb';
-import { colores } from '../tema';
+import { colores, espacio, tipo } from '../tema';
 
 interface Props {
   path: string | null;
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     backgroundColor: colores.superficieAlta,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 4,
+    gap: espacio.xs,
   },
-  textoRelleno: { color: colores.textoSuave, fontSize: 11 },
+  textoRelleno: { color: colores.textoSuave, fontSize: tipo.nota },
 });

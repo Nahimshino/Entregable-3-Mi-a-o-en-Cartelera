@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text } from 'react-native';
-import { ALTURA_TOCABLE, colores, espacio } from '../tema';
+import { ALTURA_TOCABLE, colores, espacio, peso } from '../tema';
 
 interface Props {
   texto: string;
@@ -31,6 +31,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   activo: { backgroundColor: colores.primario, borderColor: colores.primario },
-  texto: { color: colores.texto, fontWeight: '600' },
+  texto: { color: colores.texto, fontWeight: peso.semibold },
   textoActivo: { color: colores.textoSobrePrimario },
 });

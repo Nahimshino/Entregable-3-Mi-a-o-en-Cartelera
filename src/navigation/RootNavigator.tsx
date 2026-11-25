@@ -65,7 +65,11 @@ export function RootNavigator() {
       {usuario ? (
         <AppStack.Navigator screenOptions={{ headerTintColor: colores.primario, headerBackTitle: 'Atrás' }}>
           <AppStack.Screen name="Pestanas" component={Pestanas} options={{ headerShown: false }} />
-          <AppStack.Screen name="Detalle" component={DetalleScreen} options={({ route }) => ({ title: route.params.titulo })} />
+          <AppStack.Screen
+            name="Detalle"
+            component={DetalleScreen}
+            options={({ route }) => ({ title: route.params.titulo })}
+          />
           <AppStack.Screen
             name="Editar"
             component={EditarScreen}

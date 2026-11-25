@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useCartelera } from '../context/CarteleraContext';
 import { Boton } from '../components/Boton';
 import { validarFormulario, type DatosFormulario, type ErroresFormulario } from '../utils/validaciones';
-import { ALTURA_TOCABLE, colores, espacio } from '../tema';
+import { ALTURA_TOCABLE, colores, espacio, icono, peso, radio, tipo } from '../tema';
 
 type Modo = 'login' | 'registro';
 
@@ -51,7 +51,7 @@ export function LoginScreen() {
       <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <ScrollView contentContainerStyle={styles.contenido} keyboardShouldPersistTaps="handled">
           <View style={styles.marca}>
-            <Ionicons name="film" size={56} color={colores.primario} />
+            <Ionicons name="film" size={icono.enorme} color={colores.primario} />
             <Text style={styles.nombreApp}>Mi Cartelera</Text>
             <Text style={styles.lema}>Tus películas y series, en orden.</Text>
           </View>
@@ -87,7 +87,7 @@ export function LoginScreen() {
 
           {errorServidor && (
             <View style={styles.errorServidor} accessibilityRole="alert">
-              <Ionicons name="alert-circle" size={18} color={colores.peligro} />
+              <Ionicons name="alert-circle" size={icono.medio} color={colores.peligro} />
               <Text style={styles.textoErrorServidor}>{errorServidor}</Text>
             </View>
           )}
@@ -141,33 +141,33 @@ const styles = StyleSheet.create({
   pantalla: { flex: 1, backgroundColor: colores.fondo },
   contenido: { padding: espacio.xl, gap: espacio.m, flexGrow: 1, justifyContent: 'center' },
   marca: { alignItems: 'center', marginBottom: espacio.xl, gap: espacio.xs },
-  nombreApp: { color: colores.texto, fontSize: 32, fontWeight: '800' },
-  lema: { color: colores.textoSuave, fontSize: 15 },
-  tituloForm: { color: colores.texto, fontSize: 20, fontWeight: '700' },
+  nombreApp: { color: colores.texto, fontSize: tipo.marca, fontWeight: peso.extra },
+  lema: { color: colores.textoSuave, fontSize: tipo.cuerpo },
+  tituloForm: { color: colores.texto, fontSize: tipo.subtitulo, fontWeight: peso.bold },
   campo: { gap: espacio.xs },
-  etiqueta: { color: colores.textoSuave, fontSize: 14 },
+  etiqueta: { color: colores.textoSuave, fontSize: tipo.secundario },
   input: {
     minHeight: ALTURA_TOCABLE + 4,
     backgroundColor: colores.superficie,
-    borderRadius: 10,
+    borderRadius: radio.medio,
     borderWidth: 1,
     borderColor: colores.borde,
     color: colores.texto,
     paddingHorizontal: espacio.m,
-    fontSize: 16,
+    fontSize: tipo.cuerpo,
   },
   inputError: { borderColor: colores.peligro },
-  error: { color: colores.peligro, fontSize: 13 },
+  error: { color: colores.peligro, fontSize: tipo.secundario },
   errorServidor: {
     flexDirection: 'row',
     gap: espacio.s,
     alignItems: 'center',
     backgroundColor: colores.peligroSuave,
     padding: espacio.m,
-    borderRadius: 10,
+    borderRadius: radio.medio,
   },
   textoErrorServidor: { color: colores.peligro, flex: 1 },
   alternar: { minHeight: ALTURA_TOCABLE, justifyContent: 'center', alignItems: 'center' },
-  textoAlternar: { color: colores.textoSuave, fontSize: 15 },
-  enlace: { color: colores.primario, fontWeight: '700' },
+  textoAlternar: { color: colores.textoSuave, fontSize: tipo.cuerpo },
+  enlace: { color: colores.primario, fontWeight: peso.bold },
 });

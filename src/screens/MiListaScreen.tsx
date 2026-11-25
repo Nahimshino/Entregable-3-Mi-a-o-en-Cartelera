@@ -19,7 +19,7 @@ import {
   type FiltroTipo,
 } from '../types/lista';
 import type { AppStackParamList } from '../types/navegacion';
-import { colores, espacio } from '../tema';
+import { colores, espacio, icono, peso, radio, tipo } from '../tema';
 
 const COLOR_ESTADO: Record<EstadoVisto, string> = {
   por_ver: colores.estadoPorVer,
@@ -43,7 +43,8 @@ export function MiListaScreen() {
   const filtrada = useMemo(
     () =>
       lista.filter(
-        (e) => (filtroEstado === 'todos' || e.estado === filtroEstado) && (filtroTipo === 'todos' || e.tipo === filtroTipo),
+        (e) =>
+          (filtroEstado === 'todos' || e.estado === filtroEstado) && (filtroTipo === 'todos' || e.tipo === filtroTipo),
       ),
     [lista, filtroEstado, filtroTipo],
   );
@@ -66,12 +67,14 @@ export function MiListaScreen() {
     >
       <Poster path={item.posterPath} ancho={70} />
       <View style={styles.info}>
-        <Text style={styles.titulo} numberOfLines={2}>{item.titulo}</Text>
+        <Text style={styles.titulo} numberOfLines={2}>
+          {item.titulo}
+        </Text>
         <Text style={styles.meta}>
           {ETIQUETA_TIPO[item.tipo]} · {item.anio || 'Sin año'}
         </Text>
         <View style={styles.estado}>
-          <Ionicons name={ICONO_ESTADO[item.estado]} size={16} color={COLOR_ESTADO[item.estado]} />
+          <Ionicons name={ICONO_ESTADO[item.estado]} size={icono.chico} color={COLOR_ESTADO[item.estado]} />
           <Text style={[styles.textoEstado, { color: COLOR_ESTADO[item.estado] }]}>{ETIQUETA_ESTADO[item.estado]}</Text>
         </View>
         {item.estado === 'vista' &&
@@ -81,10 +84,12 @@ export function MiListaScreen() {
             <Text style={styles.sinCalificar}>Sin calificar</Text>
           ))}
         {item.comentario ? (
-          <Text style={styles.comentario} numberOfLines={2}>“{item.comentario}”</Text>
+          <Text style={styles.comentario} numberOfLines={2}>
+            “{item.comentario}”
+          </Text>
         ) : null}
       </View>
-      <Ionicons name="create-outline" size={20} color={colores.textoSuave} />
+      <Ionicons name="create-outline" size={icono.medio} color={colores.textoSuave} />
     </Pressable>
   );
 
@@ -101,10 +106,16 @@ export function MiListaScreen() {
             keyExtractor={(e) => e.id}
             renderItem={renderTarjeta}
             contentContainerStyle={[styles.lista, filtrada.length === 0 && { flex: 1 }]}
-            refreshControl={<RefreshControl refreshing={refrescando} onRefresh={refrescar} tintColor={colores.primario} />}
+            refreshControl={
+              <RefreshControl refreshing={refrescando} onRefresh={refrescar} tintColor={colores.primario} />
+            }
             ListEmptyComponent={
               lista.length === 0 ? (
-                <Vacio icono="albums-outline" titulo="Tu lista está vacía" texto="Busca una película o serie y agrégala." />
+                <Vacio
+                  icono="albums-outline"
+                  titulo="Tu lista está vacía"
+                  texto="Busca una película o serie y agrégala."
+                />
               ) : (
                 <Vacio icono="filter-outline" titulo="Nada con estos filtros" texto="Prueba con otro estado o tipo." />
               )
@@ -119,8 +130,17 @@ export function MiListaScreen() {
       {copiaSinConexion !== null && <AvisoSinConexion fecha={copiaSinConexion} />}
       <Text style={styles.encabezado}>Mi lista</Text>
 
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filtros} style={styles.filaFiltros}>
-        <Chip texto={`Todos (${lista.filter((e) => filtroTipo === 'todos' || e.tipo === filtroTipo).length})`} activo={filtroEstado === 'todos'} onPress={() => setFiltroEstado('todos')} />
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.filtros}
+        style={styles.filaFiltros}
+      >
+        <Chip
+          texto={`Todos (${lista.filter((e) => filtroTipo === 'todos' || e.tipo === filtroTipo).length})`}
+          activo={filtroEstado === 'todos'}
+          onPress={() => setFiltroEstado('todos')}
+        />
         {ESTADOS.map((estado) => (
           <Chip
             key={estado}
@@ -143,7 +163,13 @@ export function MiListaScreen() {
 
 const styles = StyleSheet.create({
   pantalla: { flex: 1, backgroundColor: colores.fondo },
-  encabezado: { color: colores.texto, fontSize: 28, fontWeight: '800', paddingHorizontal: espacio.l, paddingTop: espacio.s },
+  encabezado: {
+    color: colores.texto,
+    fontSize: tipo.titulo,
+    fontWeight: peso.extra,
+    paddingHorizontal: espacio.l,
+    paddingTop: espacio.s,
+  },
   filaFiltros: { flexGrow: 0 },
   filtros: { flexDirection: 'row', gap: espacio.s, paddingHorizontal: espacio.l, paddingVertical: espacio.s },
   lista: { padding: espacio.l, gap: espacio.m },
@@ -152,14 +178,14 @@ const styles = StyleSheet.create({
     gap: espacio.m,
     padding: espacio.m,
     backgroundColor: colores.superficie,
-    borderRadius: 12,
+    borderRadius: radio.grande,
     alignItems: 'center',
   },
-  info: { flex: 1, gap: 3 },
-  titulo: { color: colores.texto, fontSize: 16, fontWeight: '700' },
-  meta: { color: colores.textoSuave, fontSize: 13 },
-  estado: { flexDirection: 'row', alignItems: 'center', gap: 4 },
-  textoEstado: { fontSize: 13, fontWeight: '700' },
-  sinCalificar: { color: colores.textoSuave, fontSize: 12, fontStyle: 'italic' },
-  comentario: { color: colores.textoSuave, fontSize: 13, fontStyle: 'italic' },
+  info: { flex: 1, gap: espacio.xxs },
+  titulo: { color: colores.texto, fontSize: tipo.cuerpo, fontWeight: peso.bold },
+  meta: { color: colores.textoSuave, fontSize: tipo.secundario },
+  estado: { flexDirection: 'row', alignItems: 'center', gap: espacio.xs },
+  textoEstado: { fontSize: tipo.secundario, fontWeight: peso.bold },
+  sinCalificar: { color: colores.textoSuave, fontSize: tipo.nota, fontStyle: 'italic' },
+  comentario: { color: colores.textoSuave, fontSize: tipo.secundario, fontStyle: 'italic' },
 });

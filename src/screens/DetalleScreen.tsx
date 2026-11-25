@@ -12,7 +12,7 @@ import type { DetalleObra } from '../types/tmdb';
 import type { AppStackParamList } from '../types/navegacion';
 import { ETIQUETA_ESTADO, ETIQUETA_TIPO } from '../types/lista';
 import { crearItemId } from '../utils/validaciones';
-import { colores, espacio } from '../tema';
+import { colores, espacio, icono, peso, tipo } from '../tema';
 
 type Props = NativeStackScreenProps<AppStackParamList, 'Detalle'>;
 
@@ -88,7 +88,7 @@ export function DetalleScreen({ route, navigation }: Props) {
             style={styles.calificacion}
             accessibilityLabel={`Calificación de TMDB ${obra.calificacion.toFixed(1)} de 10`}
           >
-            <Ionicons name="star" size={18} color={colores.primario} />
+            <Ionicons name="star" size={icono.medio} color={colores.primario} />
             <Text style={styles.textoCalificacion}>
               {obra.votos > 0 ? obra.calificacion.toFixed(1) : '—'}
               <Text style={styles.meta}> / 10</Text>
@@ -104,7 +104,7 @@ export function DetalleScreen({ route, navigation }: Props) {
       {enLista ? (
         <View style={styles.enLista}>
           <Text style={styles.textoEnLista}>
-            <Ionicons name="checkmark-circle" size={16} /> En tu lista · {ETIQUETA_ESTADO[enLista.estado]}
+            <Ionicons name="checkmark-circle" size={icono.chico} /> En tu lista · {ETIQUETA_ESTADO[enLista.estado]}
           </Text>
           <Boton
             titulo="Editar mi entrada"
@@ -156,19 +156,19 @@ const styles = StyleSheet.create({
   contenido: { padding: espacio.l, gap: espacio.m, paddingBottom: espacio.xl * 2 },
   cabecera: { flexDirection: 'row', gap: espacio.l },
   datos: { flex: 1, gap: espacio.s },
-  titulo: { color: colores.texto, fontSize: 22, fontWeight: '800' },
-  meta: { color: colores.textoSuave, fontSize: 14 },
+  titulo: { color: colores.texto, fontSize: tipo.subtitulo, fontWeight: peso.extra },
+  meta: { color: colores.textoSuave, fontSize: tipo.secundario },
   calificacion: { flexDirection: 'row', alignItems: 'center', gap: espacio.xs, flexWrap: 'wrap' },
-  textoCalificacion: { color: colores.texto, fontSize: 20, fontWeight: '800' },
-  votos: { color: colores.textoSuave, fontSize: 12, width: '100%' },
-  generos: { color: colores.textoSuave, fontSize: 13 },
+  textoCalificacion: { color: colores.texto, fontSize: tipo.subtitulo, fontWeight: peso.extra },
+  votos: { color: colores.textoSuave, fontSize: tipo.nota, width: '100%' },
+  generos: { color: colores.textoSuave, fontSize: tipo.secundario },
   enLista: { gap: espacio.s },
-  textoEnLista: { color: colores.exito, fontWeight: '600' },
+  textoEnLista: { color: colores.exito, fontWeight: peso.semibold },
   error: { color: colores.peligro },
-  seccion: { color: colores.texto, fontSize: 18, fontWeight: '700', marginTop: espacio.s },
-  sinopsis: { color: colores.texto, fontSize: 15, lineHeight: 22 },
-  sinDatos: { color: colores.textoSuave, fontSize: 15, fontStyle: 'italic' },
-  actor: { width: 80, gap: 2 },
-  nombreActor: { color: colores.texto, fontSize: 12, fontWeight: '600' },
-  personaje: { color: colores.textoSuave, fontSize: 11 },
+  seccion: { color: colores.texto, fontSize: tipo.destacado, fontWeight: peso.bold, marginTop: espacio.s },
+  sinopsis: { color: colores.texto, fontSize: tipo.cuerpo, lineHeight: 22 },
+  sinDatos: { color: colores.textoSuave, fontSize: tipo.cuerpo, fontStyle: 'italic' },
+  actor: { width: 80, gap: espacio.xxs },
+  nombreActor: { color: colores.texto, fontSize: tipo.nota, fontWeight: peso.semibold },
+  personaje: { color: colores.textoSuave, fontSize: tipo.nota },
 });

@@ -6,7 +6,7 @@ import Constants from 'expo-constants';
 import { useCartelera } from '../context/CarteleraContext';
 import { LogoTmdb } from '../components/LogoTmdb';
 import { Boton } from '../components/Boton';
-import { ALTURA_TOCABLE, colores, espacio } from '../tema';
+import { ALTURA_TOCABLE, colores, espacio, icono, peso, radio, tipo } from '../tema';
 
 export function AcercaDeScreen() {
   const { usuario, lista, salir } = useCartelera();
@@ -36,7 +36,7 @@ export function AcercaDeScreen() {
       <ScrollView contentContainerStyle={styles.contenido}>
         {/* La marca de la app es lo más prominente de la pantalla. */}
         <View style={styles.marca}>
-          <Ionicons name="film" size={64} color={colores.primario} />
+          <Ionicons name="film" size={icono.enorme} color={colores.primario} />
           <Text style={styles.nombreApp}>Mi Cartelera Personal</Text>
           <Text style={styles.version}>Versión {Constants.expoConfig?.version ?? '1.0.0'}</Text>
         </View>
@@ -53,7 +53,9 @@ export function AcercaDeScreen() {
         <View style={styles.tarjeta}>
           <Text style={styles.seccion}>Tu cuenta</Text>
           <Text style={styles.texto}>{usuario?.email}</Text>
-          <Text style={styles.texto}>{lista.length} obra{lista.length === 1 ? '' : 's'} en tu lista</Text>
+          <Text style={styles.texto}>
+            {lista.length} obra{lista.length === 1 ? '' : 's'} en tu lista
+          </Text>
           <Boton titulo="Cerrar sesión" variante="peligro" onPress={confirmarSalir} cargando={saliendo} />
         </View>
 
@@ -74,7 +76,7 @@ export function AcercaDeScreen() {
             accessibilityRole="link"
           >
             <Text style={styles.textoEnlace}>www.themoviedb.org</Text>
-            <Ionicons name="open-outline" size={16} color={colores.primario} />
+            <Ionicons name="open-outline" size={icono.chico} color={colores.primario} />
           </Pressable>
         </View>
       </ScrollView>
@@ -86,12 +88,12 @@ const styles = StyleSheet.create({
   pantalla: { flex: 1, backgroundColor: colores.fondo },
   contenido: { padding: espacio.l, gap: espacio.l, paddingBottom: espacio.xl * 2 },
   marca: { alignItems: 'center', gap: espacio.xs, paddingVertical: espacio.l },
-  nombreApp: { color: colores.texto, fontSize: 26, fontWeight: '800', textAlign: 'center' },
+  nombreApp: { color: colores.texto, fontSize: tipo.titulo, fontWeight: peso.extra, textAlign: 'center' },
   version: { color: colores.textoSuave },
-  tarjeta: { backgroundColor: colores.superficie, borderRadius: 12, padding: espacio.l, gap: espacio.m },
-  seccion: { color: colores.texto, fontSize: 17, fontWeight: '700' },
-  texto: { color: colores.textoSuave, fontSize: 14, lineHeight: 20 },
+  tarjeta: { backgroundColor: colores.superficie, borderRadius: radio.grande, padding: espacio.l, gap: espacio.m },
+  seccion: { color: colores.texto, fontSize: tipo.cuerpo, fontWeight: peso.bold },
+  texto: { color: colores.textoSuave, fontSize: tipo.secundario, lineHeight: 20 },
   atribucion: { flexDirection: 'row', alignItems: 'center', gap: espacio.m },
   enlace: { flexDirection: 'row', alignItems: 'center', gap: espacio.xs, minHeight: ALTURA_TOCABLE },
-  textoEnlace: { color: colores.primario, fontWeight: '600' },
+  textoEnlace: { color: colores.primario, fontWeight: peso.semibold },
 });

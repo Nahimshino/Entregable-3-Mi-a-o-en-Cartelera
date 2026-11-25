@@ -115,6 +115,14 @@ Toda escritura sigue pasando `actualizadoEn: serverTimestamp()` porque las regla
 Prueba: `duracionMin: -5` y `vistaEn` en una obra por ver son rechazados; la cuenta B sigue sin leer la
 lista de A (CA-07).
 
+**Sensor de reglas (`npm run test:reglas`).** Se agrega la dependencia de desarrollo
+`@firebase/rules-unit-testing` (no entra en la app ni en Expo Go) para probar `firestore.rules` contra el
+emulador de Firestore (requiere Java 21). Casos: dueño crea y lee; otra cuenta no lee ni escribe; documento del
+Proyecto 3 sin campos nuevos sigue siendo válido; `duracionMin: -5`, `vistaEn` en obra por ver, más de 10
+géneros y un campo desconocido son rechazados; D1 y D2 (marcar, borrar y migrar `vistaEn`) son aceptados. Va
+en un script aparte de `npm test` porque necesita el emulador; se corre antes de cada commit que toque las
+reglas.
+
 ## 7. Componentes y pantalla (según `DESIGN.md`, sin copiar valores)
 
 | Pieza                                                                           | Referencia en `DESIGN.md` |

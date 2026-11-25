@@ -182,6 +182,21 @@ This product uses the TMDB API but is not endorsed or certified by TMDB. Datos e
 | ------------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | <img src="docs/capturas/11-reglas-otra-cuenta-denegado.jpeg" width="400"> | <img src="docs/capturas/12-reglas-duena-autorizado.jpeg" width="400"> |
 
+### Épica «Mi año en cine» (emulador Android)
+
+| Resumen con datos (D7–D11)                                     | Año sin obras vistas (D12)                                 | Detalle: «En tu lista»                                           |
+| -------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------- |
+| <img src="docs/capturas/13-mi-anio-con-datos.png" width="220"> | <img src="docs/capturas/14-mi-anio-vacio.png" width="220"> | <img src="docs/capturas/15-detalle-en-tu-lista.png" width="220"> |
+
+**Documento de `mi_lista` con los campos nuevos** (`vistaEn`, `generos`, `duracionMin`, `directores`), aceptado por
+las reglas publicadas:
+
+<img src="docs/capturas/17-firestore-campos-nuevos.png" width="600">
+
+**`npm test` en verde** (8 archivos, 68 tests):
+
+<img src="docs/capturas/16-npm-test-verde.png" width="600">
+
 ## Uso de IA
 
 Ver [`docs/bitacora-ia.md`](docs/bitacora-ia.md).

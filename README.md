@@ -71,7 +71,7 @@ Campos: `tmdbId`, `tipo`, `titulo`, `anio`, `posterPath`, `estado`, `calificacio
 
 ## Instalación
 
-Requisitos: Node 20+, app **Expo Go** en el teléfono (o un emulador).
+Requisitos: Node 22.12+ o 24+ (lo exige Vitest), app **Expo Go** en el teléfono (o un emulador).
 
 ```bash
 git clone <url-del-repositorio>

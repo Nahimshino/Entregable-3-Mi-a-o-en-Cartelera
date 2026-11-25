@@ -46,3 +46,6 @@ yarn-error.*
 !.env.example
 .firebase/
 *.log
+
+# plugin local del agente
+.omc/

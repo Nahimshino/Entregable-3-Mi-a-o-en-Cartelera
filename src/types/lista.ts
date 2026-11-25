@@ -18,6 +18,21 @@ export interface ElementoLista {
   comentario: string;
   agregadoEn?: MarcaTiempo;
   actualizadoEn?: MarcaTiempo;
+  /** Cuándo pasó a vista (D1, D2). null o ausente si no está vista o aún no se migra. */
+  vistaEn?: MarcaTiempo;
+  /** Géneros de TMDB en español (máx. 10). Ausente = nunca se pidieron a TMDB (D6). */
+  generos?: string[];
+  /** Duración en minutos; null en series o si TMDB no la trae (D5, D7). */
+  duracionMin?: number | null;
+  /** Directores de la película (máx. 10); vacía en series (D5, D9). */
+  directores?: string[];
+}
+
+/** Datos de TMDB que se guardan para el resumen anual (D5). */
+export interface DatosTmdb {
+  generos: string[];
+  duracionMin: number | null;
+  directores: string[];
 }
 
 /** Datos necesarios para agregar una obra a la lista. */

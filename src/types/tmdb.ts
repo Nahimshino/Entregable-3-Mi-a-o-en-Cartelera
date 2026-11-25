@@ -43,6 +43,12 @@ export interface MiembroElencoCrudo {
   order?: number;
 }
 
+export interface MiembroEquipoCrudo {
+  id: number;
+  name: string;
+  job: string;
+}
+
 /** Campos comunes del detalle de película y serie, con el elenco agregado por append_to_response. */
 interface DetalleBaseCrudo {
   id: number;
@@ -52,7 +58,7 @@ interface DetalleBaseCrudo {
   vote_average: number;
   vote_count: number;
   genres: { id: number; name: string }[];
-  credits?: { cast: MiembroElencoCrudo[] };
+  credits?: { cast: MiembroElencoCrudo[]; crew?: MiembroEquipoCrudo[] };
 }
 
 export interface DetallePeliculaCrudo extends DetalleBaseCrudo {

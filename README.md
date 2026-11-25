@@ -160,7 +160,7 @@ This product uses the TMDB API but is not endorsed or certified by TMDB. Datos e
 
 | Iniciar sesión                                      | Buscar                                                    | Resultados de búsqueda                                         | Mi lista vacía                                               |
 | --------------------------------------------------- | --------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------ |
-| <img src="docs/capturas/01-login.jpeg" width="180"> | <img src="docs/capturas/02-buscar-vacio.png" width="180"> | <img src="docs/capturas/03-buscar-resultados.png" width="180"> | <img src="docs/capturas/04-mi-lista-vacia.jpeg" width="180"> |
+| <img src="docs/capturas/01-login.png" width="180"> | <img src="docs/capturas/02-buscar-vacio.png" width="180"> | <img src="docs/capturas/03-buscar-resultados.png" width="180"> | <img src="docs/capturas/04-mi-lista-vacia.jpeg" width="180"> |
 
 | Mi lista con películas                                          | Mi lista con una serie                                          | Filtro por series                                                   | Acerca de                                              |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------ |

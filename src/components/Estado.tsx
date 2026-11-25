@@ -26,16 +26,20 @@ export function Vacio({
   icono,
   titulo,
   texto,
+  accion,
 }: {
   icono: keyof typeof Ionicons.glyphMap;
   titulo: string;
   texto?: string;
+  /** Botón opcional, por ejemplo «Ir a Mi lista» en un año vacío (D12). */
+  accion?: { titulo: string; onPress: () => void };
 }) {
   return (
     <View style={styles.centro}>
       <Ionicons name={icono} size={48} color={colores.textoSuave} />
       <Text style={styles.titulo}>{titulo}</Text>
       {texto && <Text style={styles.texto}>{texto}</Text>}
+      {accion && <Boton titulo={accion.titulo} onPress={accion.onPress} />}
     </View>
   );
 }

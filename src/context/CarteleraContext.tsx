@@ -4,16 +4,32 @@ import NetInfo from '@react-native-community/netinfo';
 import * as authService from '../services/authService';
 import * as listaService from '../services/listaService';
 import { guardarCache, leerCache } from '../services/cacheService';
-import { cargarConfiguracion } from '../services/tmdbService';
+import { cargarConfiguracion, obtenerDatosTmdb } from '../services/tmdbService';
+import { estaConectado } from '../services/conexionService';
 import type { CambiosElemento, ElementoLista, NuevoElemento } from '../types/lista';
 import type { EstadoPeticion } from '../types/peticion';
 import { traducirError } from '../utils/erroresFirebase';
 import { TiempoAgotadoError } from '../utils/tiempoLimite';
 import { normalizarCambios } from '../utils/validaciones';
 import { accionVistaEn } from '../dominio/vistaEn';
+import { conDatosTmdb, conVistaEn, planSincronizacion } from '../dominio/sincronizacion';
 
 /** Resultado de una mutación: si quedó pendiente es porque no hubo conexión y se guardó localmente. */
 export type ResultadoMutacion = { pendiente: boolean };
+
+/** Progreso del completado de datos de TMDB (D6): obra actual y total. */
+export interface ProgresoSincronizacion {
+  hechas: number;
+  total: number;
+}
+
+/** Resultado de sincronizar un año (D2, D6, D13). */
+export interface ResultadoSincronizacion {
+  conectado: boolean;
+  fechasMigradas: number;
+  completadas: number;
+  fallidas: number;
+}
 
 interface CarteleraContextValor {
   usuario: User | null;
@@ -30,6 +46,11 @@ interface CarteleraContextValor {
   agregar: (obra: NuevoElemento) => Promise<void>;
   actualizar: (itemId: string, cambios: CambiosElemento) => Promise<ResultadoMutacion>;
   eliminar: (itemId: string) => Promise<ResultadoMutacion>;
+  /** Al abrir Mi año: migra fechas (D2) y completa datos de TMDB del año (D6), de una obra en una. */
+  sincronizarAnio: (
+    anio: number,
+    alProgresar?: (p: ProgresoSincronizacion) => void,
+  ) => Promise<ResultadoSincronizacion>;
 }
 
 const CarteleraContext = createContext<CarteleraContextValor | null>(null);
@@ -180,6 +201,63 @@ export function CarteleraProvider({ children }: { children: ReactNode }) {
     [exigirUsuario, fijarLista],
   );
 
+  const sincronizando = useRef(false);
+
+  /** Cambia una obra de la lista local (y la caché) sin tocar las demás. */
+  const reemplazar = useCallback(
+    (uid: string, itemId: string, cambiar: (e: ElementoLista) => ElementoLista) => {
+      fijarLista(
+        uid,
+        listaRef.current.map((e) => (e.id === itemId ? cambiar(e) : e)),
+      );
+    },
+    [fijarLista],
+  );
+
+  const sincronizarAnio = useCallback(
+    async (anio: number, alProgresar?: (p: ProgresoSincronizacion) => void): Promise<ResultadoSincronizacion> => {
+      const resultado: ResultadoSincronizacion = { conectado: false, fechasMigradas: 0, completadas: 0, fallidas: 0 };
+      if (!usuario || sincronizando.current) return resultado;
+      const uid = usuario.uid;
+      // D13: sin conexión (o mostrando la copia local) no se migran fechas ni se completan datos.
+      resultado.conectado = copiaSinConexion === null && (await estaConectado());
+      const plan = planSincronizacion(listaRef.current, anio, resultado.conectado);
+      if (plan.migrarFechas.length === 0 && plan.completar.length === 0) return resultado;
+
+      sincronizando.current = true;
+      try {
+        // D2: una sola vez; queda guardado en Firestore y la obra ya no vuelve a aparecer en el plan.
+        for (const { item, vistaEn } of plan.migrarFechas) {
+          try {
+            await listaService.migrarVistaEn(uid, item.id, vistaEn);
+            reemplazar(uid, item.id, (e) => conVistaEn(e, vistaEn));
+            resultado.fechasMigradas += 1;
+          } catch {
+            // Se reintenta la próxima vez que se abra el resumen.
+          }
+        }
+        // D6: de una en una y con progreso visible; si TMDB falla, la obra queda sin datos (PA-3).
+        const total = plan.completar.length;
+        for (const [i, item] of plan.completar.entries()) {
+          alProgresar?.({ hechas: i, total });
+          try {
+            const datos = await obtenerDatosTmdb(item.tipo, item.tmdbId);
+            await listaService.guardarDatosTmdb(uid, item.id, datos);
+            reemplazar(uid, item.id, (e) => conDatosTmdb(e, datos));
+            resultado.completadas += 1;
+          } catch {
+            resultado.fallidas += 1;
+          }
+        }
+        if (total > 0) alProgresar?.({ hechas: total, total });
+      } finally {
+        sincronizando.current = false;
+      }
+      return resultado;
+    },
+    [usuario, copiaSinConexion, reemplazar],
+  );
+
   const conTraduccion = (accion: () => Promise<unknown>) => async () => {
     try {
       await accion();
@@ -203,8 +281,20 @@ export function CarteleraProvider({ children }: { children: ReactNode }) {
       agregar,
       actualizar,
       eliminar,
+      sincronizarAnio,
     }),
-    [usuario, cargandoSesion, lista, estadoLista, copiaSinConexion, recargar, agregar, actualizar, eliminar],
+    [
+      usuario,
+      cargandoSesion,
+      lista,
+      estadoLista,
+      copiaSinConexion,
+      recargar,
+      agregar,
+      actualizar,
+      eliminar,
+      sincronizarAnio,
+    ],
   );
 
   return <CarteleraContext.Provider value={valor}>{children}</CarteleraContext.Provider>;

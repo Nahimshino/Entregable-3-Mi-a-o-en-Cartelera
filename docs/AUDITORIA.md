@@ -60,7 +60,7 @@ formatos), `npx tsc --noEmit` sin errores, `npm run test:reglas` 13 casos en ver
 | Id   | Estado                | Cómo se resolvió / por qué sigue                                                                                                                                              |
 | :--- | :-------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | A-01 | ✅ Resuelto           | Vitest + `npm test`; tests del dominio, de RF6/RF4, de formatos y sensor de colores fijos                                                                                     |
-| A-02 | ✅ Resuelto en código | `firestore.rules` con los campos opcionales de 1.6; sensor `test:reglas` (con las reglas viejas fallan 5 casos). ⚠️ Falta publicarlas: ver A-13                               |
+| A-02 | ✅ Resuelto en código | `firestore.rules` con los campos opcionales de 1.6; sensor `test:reglas` (con las reglas viejas fallan 5 casos). Publicadas el 2026-11-25 (A-13)                              |
 | A-03 | ⚠️ Riesgo conocido    | Sin cambios: agregar sigue necesitando conexión                                                                                                                               |
 | A-04 | ⚠️ Riesgo conocido    | Sin cambios. Ahora también aplica a `vistaEn`: si se marca vista sin conexión y se cierra la app antes de reconectar, la fecha se pierde y D2 la repondrá con `actualizadoEn` |
 | A-05 | ✅ Resuelto           | Colores del logo en `coloresTmdb` y fondo del error del login en `colores.peligroSuave` (T-07)                                                                                |
@@ -76,7 +76,7 @@ formatos), `npx tsc --noEmit` sin errores, `npm run test:reglas` 13 casos en ver
 | :--- | :---------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------- | :------- | :------------------------------------------------------------------------------------------------------------ |
 | A-11 | `npm run lint` reporta 3 errores `react-hooks/set-state-in-effect`; ya estaban en `p3-final`                                              | `CarteleraContext.tsx` (efecto de sesión), `BuscarScreen.tsx`, `DetalleScreen.tsx` | Baja     | Riesgo conocido: no rompen nada; corregirlos cambia la carga de datos y queda fuera de la épica               |
 | A-12 | Vitest 5 exige Node 22.12+ y el README pedía Node 20                                                                                      | `package.json` (`engines`), README                                                 | Media    | ✅ Resuelto: README y `engines` actualizados (detectado por la revisión de Codex)                             |
-| A-13 | Las reglas nuevas no están publicadas en Firebase todavía (falta `firebase login` en la PC)                                               | `npm run reglas:publicar` pendiente                                                | **Alta** | Pendiente de la autora: sin publicar, agregar obras falla porque las reglas viejas rechazan los campos nuevos |
+| A-13 | Las reglas nuevas no están publicadas en Firebase todavía (falta `firebase login` en la PC)                                               | `npm run reglas:publicar` pendiente                                                | **Alta** | ✅ Resuelto el 2026-11-25: `npm run test:reglas` en verde (13) y `npm run reglas:publicar` → «released rules» |
 | A-14 | El sensor de reglas necesita Java 21 y el emulador, por eso no corre en `npm test`                                                        | `package.json` (`test:reglas`)                                                     | Baja     | Riesgo conocido: se corre a mano antes de tocar las reglas (anotado en la spec y en `AGENTS.md`)              |
 | A-15 | La migración D2 y el completado D6 reescriben `actualizadoEn`, porque las reglas exigen `actualizadoEn == request.time` en toda escritura | `listaService.migrarVistaEn`, `guardarDatosTmdb`                                   | Baja     | Riesgo conocido: `vistaEn` toma el valor anterior antes de escribir, así que D2 no se ve afectado             |
 | A-16 | T-09 unificó algunos tamaños cercanos (15 → 16, 13 → 14, gap 3 → 2): cambios visuales mínimos                                             | `src/screens/*`                                                                    | Baja     | Aceptado por `DESIGN.md` §2.2; se comprueba en V-17                                                           |
@@ -85,5 +85,5 @@ formatos), `npx tsc --noEmit` sin errores, `npm run test:reglas` 13 casos en ver
 
 ### 2.3 Riesgos que quedan
 
-A-03, A-04, A-11, A-14 y A-15 como riesgos conocidos; A-13 y A-18 dependen de pasos manuales de la autora
-(publicar reglas y probar en el teléfono) antes de la demo.
+A-03, A-04, A-11, A-14 y A-15 como riesgos conocidos; A-18 depende de que la autora pruebe en el teléfono antes
+de la demo.

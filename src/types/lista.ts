@@ -36,7 +36,7 @@ export interface DatosTmdb {
 }
 
 /** Datos necesarios para agregar una obra a la lista. */
-export type NuevoElemento = Pick<ElementoLista, 'tmdbId' | 'tipo' | 'titulo' | 'anio' | 'posterPath'>;
+export type NuevoElemento = Pick<ElementoLista, 'tmdbId' | 'tipo' | 'titulo' | 'anio' | 'posterPath'> & DatosTmdb;
 
 /** Campos que el usuario puede editar de su entrada. */
 export type CambiosElemento = Pick<ElementoLista, 'estado' | 'calificacionPersonal' | 'comentario'>;

@@ -10,8 +10,9 @@ import type {
   ResultadoMultiCrudo,
   TamanoImagen,
 } from '../types/tmdb';
-import type { TipoObra } from '../types/lista';
+import type { DatosTmdb, TipoObra } from '../types/lista';
 import { extraerAnio } from '../utils/validaciones';
+import { datosTmdbDePelicula, datosTmdbDeSerie } from '../dominio/datosTmdb';
 
 const URL_BASE = 'https://api.themoviedb.org/3/';
 const IDIOMA = 'es-MX';
@@ -26,7 +27,10 @@ let configuracion: ConfiguracionImagenes = {
 };
 
 export class TmdbError extends Error {
-  constructor(mensaje: string, public readonly status?: number) {
+  constructor(
+    mensaje: string,
+    public readonly status?: number,
+  ) {
     super(mensaje);
     this.name = 'TmdbError';
   }
@@ -49,9 +53,7 @@ function mensajePorStatus(status: number): string {
 async function pedir<T>(ruta: string, params: Record<string, string | number> = {}): Promise<T> {
   if (!TOKEN) throw new TmdbError('Falta EXPO_PUBLIC_TMDB_TOKEN en el archivo .env.');
 
-  const query = new URLSearchParams(
-    Object.entries(params).map(([clave, valor]) => [clave, String(valor)]),
-  ).toString();
+  const query = new URLSearchParams(Object.entries(params).map(([clave, valor]) => [clave, String(valor)])).toString();
   const url = `${URL_BASE}${ruta}${query ? `?${query}` : ''}`;
 
   let respuesta: Response;
@@ -149,6 +151,7 @@ export async function obtenerDetalle(tipo: TipoObra, id: number): Promise<Detall
       generos: d.genres.map((g) => g.name),
       extra: d.runtime ? `${d.runtime} min` : '',
       elenco: normalizarElenco(d.credits?.cast),
+      datosTmdb: datosTmdbDePelicula(d),
     };
   } else {
     const d = await pedir<DetalleSerieCrudo>(`tv/${id}`, params);
@@ -162,10 +165,9 @@ export async function obtenerDetalle(tipo: TipoObra, id: number): Promise<Detall
       calificacion: d.vote_average ?? 0,
       votos: d.vote_count ?? 0,
       generos: d.genres.map((g) => g.name),
-      extra: d.number_of_seasons
-        ? `${d.number_of_seasons} temporada${d.number_of_seasons === 1 ? '' : 's'}`
-        : '',
+      extra: d.number_of_seasons ? `${d.number_of_seasons} temporada${d.number_of_seasons === 1 ? '' : 's'}` : '',
       elenco: normalizarElenco(d.credits?.cast),
+      datosTmdb: datosTmdbDeSerie(d),
     };
   }
 
@@ -179,4 +181,14 @@ export async function obtenerDetalle(tipo: TipoObra, id: number): Promise<Detall
     }
   }
   return detalle;
+}
+
+/** D6: géneros, duración y directores de una obra ya guardada (para completar las anteriores a la épica). */
+export async function obtenerDatosTmdb(tipo: TipoObra, id: number): Promise<DatosTmdb> {
+  if (tipo === 'movie') {
+    const d = await pedir<DetallePeliculaCrudo>(`movie/${id}`, { language: IDIOMA, append_to_response: 'credits' });
+    return datosTmdbDePelicula(d);
+  }
+  const d = await pedir<DetalleSerieCrudo>(`tv/${id}`, { language: IDIOMA });
+  return datosTmdbDeSerie(d);
 }

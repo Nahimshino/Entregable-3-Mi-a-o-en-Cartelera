@@ -10,6 +10,7 @@ import type { EstadoPeticion } from '../types/peticion';
 import { traducirError } from '../utils/erroresFirebase';
 import { TiempoAgotadoError } from '../utils/tiempoLimite';
 import { normalizarCambios } from '../utils/validaciones';
+import { accionVistaEn } from '../dominio/vistaEn';
 
 /** Resultado de una mutación: si quedó pendiente es porque no hubo conexión y se guardó localmente. */
 export type ResultadoMutacion = { pendiente: boolean };
@@ -139,12 +140,16 @@ export function CarteleraProvider({ children }: { children: ReactNode }) {
       const uid = exigirUsuario();
       const anterior = listaRef.current;
       const limpios = normalizarCambios(cambios);
+      const actual = anterior.find((e) => e.id === itemId);
+      // D1: la regla vive en el dominio; la fecha local es optimista hasta que llegue la del servidor.
+      const accion = actual ? accionVistaEn(actual.estado, limpios.estado) : 'conservar';
+      const vistaEn = accion === 'marcar' ? { vistaEn: Date.now() } : accion === 'borrar' ? { vistaEn: null } : {};
       fijarLista(
         uid,
-        anterior.map((e) => (e.id === itemId ? { ...e, ...limpios, actualizadoEn: Date.now() } : e)),
+        anterior.map((e) => (e.id === itemId ? { ...e, ...limpios, ...vistaEn, actualizadoEn: Date.now() } : e)),
       );
       try {
-        await listaService.actualizarElemento(uid, itemId, limpios);
+        await listaService.actualizarElemento(uid, itemId, limpios, accion);
         return { pendiente: false };
       } catch (error) {
         if (error instanceof TiempoAgotadoError) return { pendiente: true };
@@ -159,7 +164,10 @@ export function CarteleraProvider({ children }: { children: ReactNode }) {
     async (itemId: string): Promise<ResultadoMutacion> => {
       const uid = exigirUsuario();
       const anterior = listaRef.current;
-      fijarLista(uid, anterior.filter((e) => e.id !== itemId));
+      fijarLista(
+        uid,
+        anterior.filter((e) => e.id !== itemId),
+      );
       try {
         await listaService.eliminarElemento(uid, itemId);
         return { pendiente: false };

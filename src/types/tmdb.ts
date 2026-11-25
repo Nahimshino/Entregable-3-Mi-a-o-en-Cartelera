@@ -1,4 +1,4 @@
-import type { TipoObra } from './lista';
+import type { DatosTmdb, TipoObra } from './lista';
 
 /** Respuesta paginada genérica de TMDB. */
 export interface RespuestaPaginada<T> {
@@ -93,6 +93,8 @@ export interface DetalleObra {
   generos: string[];
   extra: string; // duración o número de temporadas
   elenco: MiembroElenco[];
+  /** Datos que se guardan al agregar a Mi lista (D5). */
+  datosTmdb: DatosTmdb;
 }
 
 export interface ConfiguracionImagenes {

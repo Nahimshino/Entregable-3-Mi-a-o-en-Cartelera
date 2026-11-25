@@ -39,7 +39,12 @@ export function DetalleScreen({ route, navigation }: Props) {
     void cargar();
   }, [cargar]);
 
-  if (peticion.estado === 'cargando') return <View style={styles.pantalla}><Cargando /></View>;
+  if (peticion.estado === 'cargando')
+    return (
+      <View style={styles.pantalla}>
+        <Cargando />
+      </View>
+    );
   if (peticion.estado === 'error') {
     return (
       <View style={styles.pantalla}>
@@ -54,7 +59,14 @@ export function DetalleScreen({ route, navigation }: Props) {
     setAgregando(true);
     setErrorAgregar(null);
     try {
-      await agregar({ tmdbId: obra.id, tipo: obra.tipo, titulo: obra.titulo, anio: obra.anio, posterPath: obra.posterPath });
+      await agregar({
+        tmdbId: obra.id,
+        tipo: obra.tipo,
+        titulo: obra.titulo,
+        anio: obra.anio,
+        posterPath: obra.posterPath,
+        ...obra.datosTmdb, // D5: géneros, duración y directores
+      });
     } catch (error) {
       setErrorAgregar(error instanceof Error ? error.message : 'No se pudo agregar.');
     } finally {
@@ -72,13 +84,18 @@ export function DetalleScreen({ route, navigation }: Props) {
             {ETIQUETA_TIPO[obra.tipo]} · {obra.anio || 'Sin año'}
             {obra.extra ? ` · ${obra.extra}` : ''}
           </Text>
-          <View style={styles.calificacion} accessibilityLabel={`Calificación de TMDB ${obra.calificacion.toFixed(1)} de 10`}>
+          <View
+            style={styles.calificacion}
+            accessibilityLabel={`Calificación de TMDB ${obra.calificacion.toFixed(1)} de 10`}
+          >
             <Ionicons name="star" size={18} color={colores.primario} />
             <Text style={styles.textoCalificacion}>
               {obra.votos > 0 ? obra.calificacion.toFixed(1) : '—'}
               <Text style={styles.meta}> / 10</Text>
             </Text>
-            <Text style={styles.votos}>{obra.votos > 0 ? `${obra.votos.toLocaleString('es-MX')} votos` : 'Sin votos'}</Text>
+            <Text style={styles.votos}>
+              {obra.votos > 0 ? `${obra.votos.toLocaleString('es-MX')} votos` : 'Sin votos'}
+            </Text>
           </View>
           {obra.generos.length > 0 && <Text style={styles.generos}>{obra.generos.join(' · ')}</Text>}
         </View>
@@ -89,7 +106,11 @@ export function DetalleScreen({ route, navigation }: Props) {
           <Text style={styles.textoEnLista}>
             <Ionicons name="checkmark-circle" size={16} /> En tu lista · {ETIQUETA_ESTADO[enLista.estado]}
           </Text>
-          <Boton titulo="Editar mi entrada" variante="secundario" onPress={() => navigation.navigate('Editar', { itemId })} />
+          <Boton
+            titulo="Editar mi entrada"
+            variante="secundario"
+            onPress={() => navigation.navigate('Editar', { itemId })}
+          />
         </View>
       ) : (
         <Boton titulo="Agregar a mi lista" onPress={agregarALista} cargando={agregando} />
@@ -114,8 +135,14 @@ export function DetalleScreen({ route, navigation }: Props) {
           renderItem={({ item }) => (
             <View style={styles.actor}>
               <Poster path={item.fotoPath} ancho={80} clase="perfil" />
-              <Text style={styles.nombreActor} numberOfLines={2}>{item.nombre}</Text>
-              {item.personaje ? <Text style={styles.personaje} numberOfLines={2}>{item.personaje}</Text> : null}
+              <Text style={styles.nombreActor} numberOfLines={2}>
+                {item.nombre}
+              </Text>
+              {item.personaje ? (
+                <Text style={styles.personaje} numberOfLines={2}>
+                  {item.personaje}
+                </Text>
+              ) : null}
             </View>
           )}
         />

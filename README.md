@@ -158,13 +158,13 @@ This product uses the TMDB API but is not endorsed or certified by TMDB. Datos e
 
 ### Capturas de la app (móvil)
 
-| Iniciar sesión                                      | Buscar                                                     | Resultados de búsqueda                                          | Mi lista vacía                                               |
-| --------------------------------------------------- | ---------------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------ |
-| <img src="docs/capturas/01-login.jpeg" width="180"> | <img src="docs/capturas/02-buscar-vacio.jpeg" width="180"> | <img src="docs/capturas/03-buscar-resultados.jpeg" width="180"> | <img src="docs/capturas/04-mi-lista-vacia.jpeg" width="180"> |
+| Iniciar sesión                                      | Buscar                                                    | Resultados de búsqueda                                         | Mi lista vacía                                               |
+| --------------------------------------------------- | --------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------ |
+| <img src="docs/capturas/01-login.jpeg" width="180"> | <img src="docs/capturas/02-buscar-vacio.png" width="180"> | <img src="docs/capturas/03-buscar-resultados.png" width="180"> | <img src="docs/capturas/04-mi-lista-vacia.jpeg" width="180"> |
 
-| Mi lista con películas                                           | Mi lista con una serie                                           | Filtro por series                                                    | Acerca de                                               |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------- |
-| <img src="docs/capturas/05-mi-lista-peliculas.jpeg" width="180"> | <img src="docs/capturas/06-mi-lista-con-serie.jpeg" width="180"> | <img src="docs/capturas/07-mi-lista-filtro-series.jpeg" width="180"> | <img src="docs/capturas/08-acerca-de.jpeg" width="180"> |
+| Mi lista con películas                                          | Mi lista con una serie                                          | Filtro por series                                                   | Acerca de                                              |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------ |
+| <img src="docs/capturas/05-mi-lista-peliculas.png" width="180"> | <img src="docs/capturas/06-mi-lista-con-serie.png" width="180"> | <img src="docs/capturas/07-mi-lista-filtro-series.png" width="180"> | <img src="docs/capturas/08-acerca-de.png" width="180"> |
 
 ### Firebase
 
@@ -184,9 +184,9 @@ This product uses the TMDB API but is not endorsed or certified by TMDB. Datos e
 
 ### Épica «Mi año en cine» (emulador Android)
 
-| Resumen con datos (D7–D11)                                     | Año sin obras vistas (D12)                                 | Detalle: «En tu lista»                                           |
-| -------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------- |
-| <img src="docs/capturas/13-mi-anio-con-datos.png" width="220"> | <img src="docs/capturas/14-mi-anio-vacio.png" width="220"> | <img src="docs/capturas/15-detalle-en-tu-lista.png" width="220"> |
+| Resumen con datos (D7–D11)                                     | Año sin obras vistas (D12)                                 | Detalle: «En tu lista»                                           | Editar mi entrada                                           |
+| -------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------- |
+| <img src="docs/capturas/13-mi-anio-con-datos.png" width="220"> | <img src="docs/capturas/14-mi-anio-vacio.png" width="220"> | <img src="docs/capturas/15-detalle-en-tu-lista.png" width="220"> | <img src="docs/capturas/18-editar-entrada.png" width="220"> |
 
 **Documento de `mi_lista` con los campos nuevos** (`vistaEn`, `generos`, `duracionMin`, `directores`), aceptado por
 las reglas publicadas:

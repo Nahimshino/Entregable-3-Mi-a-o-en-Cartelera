@@ -188,6 +188,10 @@ This product uses the TMDB API but is not endorsed or certified by TMDB. Datos e
 | -------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------- |
 | <img src="docs/capturas/13-mi-anio-con-datos.png" width="220"> | <img src="docs/capturas/14-mi-anio-vacio.png" width="220"> | <img src="docs/capturas/15-detalle-en-tu-lista.png" width="220"> | <img src="docs/capturas/18-editar-entrada.png" width="220"> |
 
+| Sin conexión: resumen con la copia guardada (D13)                 | Completando datos de TMDB (D6)                                      |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------- |
+| <img src="docs/capturas/19-mi-anio-sin-conexion.png" width="220"> | <img src="docs/capturas/20-completando-datos-tmdb.png" width="220"> |
+
 **Documento de `mi_lista` con los campos nuevos** (`vistaEn`, `generos`, `duracionMin`, `directores`), aceptado por
 las reglas publicadas:
 

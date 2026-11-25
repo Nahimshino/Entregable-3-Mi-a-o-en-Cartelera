@@ -8,6 +8,7 @@ import { LoginScreen } from '../screens/LoginScreen';
 import { BuscarScreen } from '../screens/BuscarScreen';
 import { DetalleScreen } from '../screens/DetalleScreen';
 import { MiListaScreen } from '../screens/MiListaScreen';
+import { MiAnioScreen } from '../screens/MiAnioScreen';
 import { EditarScreen } from '../screens/EditarScreen';
 import { AcercaDeScreen } from '../screens/AcercaDeScreen';
 import type { AppStackParamList, AuthStackParamList, PestanasParamList } from '../types/navegacion';
@@ -32,6 +33,7 @@ const tema: Theme = {
 const ICONOS: Record<keyof PestanasParamList, keyof typeof Ionicons.glyphMap> = {
   Buscar: 'search',
   MiLista: 'albums',
+  MiAnio: 'calendar',
   AcercaDe: 'information-circle',
 };
 
@@ -47,6 +49,7 @@ function Pestanas() {
     >
       <Tab.Screen name="Buscar" component={BuscarScreen} />
       <Tab.Screen name="MiLista" component={MiListaScreen} options={{ title: 'Mi lista' }} />
+      <Tab.Screen name="MiAnio" component={MiAnioScreen} options={{ title: 'Mi año' }} />
       <Tab.Screen name="AcercaDe" component={AcercaDeScreen} options={{ title: 'Acerca de' }} />
     </Tab.Navigator>
   );

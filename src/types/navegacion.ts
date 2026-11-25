@@ -4,6 +4,7 @@ import type { TipoObra } from './lista';
 export type PestanasParamList = {
   Buscar: undefined;
   MiLista: undefined;
+  MiAnio: undefined;
   AcercaDe: undefined;
 };
 

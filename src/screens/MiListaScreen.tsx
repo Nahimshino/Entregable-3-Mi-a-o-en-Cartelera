@@ -172,7 +172,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: espacio.l,
     paddingTop: espacio.s,
   },
-  filaFiltros: { flexGrow: 0 },
+  // El ScrollView horizontal trae flexShrink: 1; sin esto la lista lo encoge y recorta los chips (A-21).
+  filaFiltros: { flexGrow: 0, flexShrink: 0 },
   filtros: { flexDirection: 'row', gap: espacio.s, paddingHorizontal: espacio.l, paddingVertical: espacio.s },
   lista: { padding: espacio.l, gap: espacio.m },
   tarjeta: {

@@ -1,7 +1,7 @@
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Boton } from './Boton';
-import { colores, espacio } from '../utils/tema';
+import { colores, espacio } from '../tema';
 
 export function Cargando({ texto = 'Cargando…' }: { texto?: string }) {
   return (

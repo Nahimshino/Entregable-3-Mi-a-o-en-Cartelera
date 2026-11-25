@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text } from 'react-native';
-import { ALTURA_TOCABLE, colores, espacio } from '../utils/tema';
+import { ALTURA_TOCABLE, colores, espacio } from '../tema';
 
 interface Props {
   texto: string;

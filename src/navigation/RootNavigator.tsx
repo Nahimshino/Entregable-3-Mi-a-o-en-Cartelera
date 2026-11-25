@@ -11,7 +11,7 @@ import { MiListaScreen } from '../screens/MiListaScreen';
 import { EditarScreen } from '../screens/EditarScreen';
 import { AcercaDeScreen } from '../screens/AcercaDeScreen';
 import type { AppStackParamList, AuthStackParamList, PestanasParamList } from '../types/navegacion';
-import { colores } from '../utils/tema';
+import { colores } from '../tema';
 
 const Tab = createBottomTabNavigator<PestanasParamList>();
 const AppStack = createNativeStackNavigator<AppStackParamList>();

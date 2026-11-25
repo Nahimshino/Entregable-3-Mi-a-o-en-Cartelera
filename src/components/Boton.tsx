@@ -1,5 +1,5 @@
 import { ActivityIndicator, Pressable, StyleSheet, Text, type StyleProp, type ViewStyle } from 'react-native';
-import { ALTURA_TOCABLE, colores, espacio } from '../utils/tema';
+import { ALTURA_TOCABLE, colores, espacio } from '../tema';
 
 type Variante = 'primario' | 'secundario' | 'peligro';
 

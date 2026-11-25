@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { ALTURA_TOCABLE, colores } from '../utils/tema';
+import { ALTURA_TOCABLE, colores } from '../tema';
 
 interface Props {
   valor: number | null;

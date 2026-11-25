@@ -9,7 +9,7 @@ import { Boton } from '../components/Boton';
 import { Vacio } from '../components/Estado';
 import { ESTADOS, ETIQUETA_ESTADO, ETIQUETA_TIPO, MAX_COMENTARIO, type EstadoVisto } from '../types/lista';
 import type { AppStackParamList } from '../types/navegacion';
-import { colores, espacio } from '../utils/tema';
+import { colores, espacio } from '../tema';
 
 type Props = NativeStackScreenProps<AppStackParamList, 'Editar'>;
 

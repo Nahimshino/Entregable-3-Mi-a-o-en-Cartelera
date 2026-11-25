@@ -13,7 +13,7 @@ import type { PaginaBusqueda, ResultadoBusqueda } from '../types/tmdb';
 import type { AppStackParamList } from '../types/navegacion';
 import { ETIQUETA_ESTADO, ETIQUETA_TIPO } from '../types/lista';
 import { crearItemId } from '../utils/validaciones';
-import { ALTURA_TOCABLE, colores, espacio } from '../utils/tema';
+import { ALTURA_TOCABLE, colores, espacio } from '../tema';
 
 const ESPERA_ESCRITURA_MS = 500;
 

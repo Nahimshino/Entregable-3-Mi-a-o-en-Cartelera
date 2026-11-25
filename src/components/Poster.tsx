@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { urlImagen } from '../services/tmdbService';
 import type { TamanoImagen } from '../types/tmdb';
-import { colores } from '../utils/tema';
+import { colores } from '../tema';
 
 interface Props {
   path: string | null;

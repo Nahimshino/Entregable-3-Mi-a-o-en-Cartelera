@@ -6,7 +6,7 @@ import Constants from 'expo-constants';
 import { useCartelera } from '../context/CarteleraContext';
 import { LogoTmdb } from '../components/LogoTmdb';
 import { Boton } from '../components/Boton';
-import { ALTURA_TOCABLE, colores, espacio } from '../utils/tema';
+import { ALTURA_TOCABLE, colores, espacio } from '../tema';
 
 export function AcercaDeScreen() {
   const { usuario, lista, salir } = useCartelera();

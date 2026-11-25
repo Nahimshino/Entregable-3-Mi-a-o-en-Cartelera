@@ -19,12 +19,12 @@ import {
   type FiltroTipo,
 } from '../types/lista';
 import type { AppStackParamList } from '../types/navegacion';
-import { colores, espacio } from '../utils/tema';
+import { colores, espacio } from '../tema';
 
 const COLOR_ESTADO: Record<EstadoVisto, string> = {
-  por_ver: colores.textoSuave,
-  viendo: colores.aviso,
-  vista: colores.exito,
+  por_ver: colores.estadoPorVer,
+  viendo: colores.estadoViendo,
+  vista: colores.estadoVista,
 };
 
 const ICONO_ESTADO: Record<EstadoVisto, keyof typeof Ionicons.glyphMap> = {

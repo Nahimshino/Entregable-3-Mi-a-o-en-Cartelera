@@ -12,7 +12,7 @@ import type { DetalleObra } from '../types/tmdb';
 import type { AppStackParamList } from '../types/navegacion';
 import { ETIQUETA_ESTADO, ETIQUETA_TIPO } from '../types/lista';
 import { crearItemId } from '../utils/validaciones';
-import { colores, espacio } from '../utils/tema';
+import { colores, espacio } from '../tema';
 
 type Props = NativeStackScreenProps<AppStackParamList, 'Detalle'>;
 

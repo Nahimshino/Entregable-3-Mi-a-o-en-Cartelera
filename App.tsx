@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { CarteleraProvider } from './src/context/CarteleraContext';
 import { RootNavigator } from './src/navigation/RootNavigator';
-import { colores } from './src/utils/tema';
+import { colores } from './src/tema';
 
 export default function App() {
   return (

@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useCartelera } from '../context/CarteleraContext';
 import { Boton } from '../components/Boton';
 import { validarFormulario, type DatosFormulario, type ErroresFormulario } from '../utils/validaciones';
-import { ALTURA_TOCABLE, colores, espacio } from '../utils/tema';
+import { ALTURA_TOCABLE, colores, espacio } from '../tema';
 
 type Modo = 'login' | 'registro';
 
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: espacio.s,
     alignItems: 'center',
-    backgroundColor: 'rgba(255,107,107,0.12)',
+    backgroundColor: colores.peligroSuave,
     padding: espacio.m,
     borderRadius: 10,
   },

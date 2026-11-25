@@ -7,35 +7,14 @@
     <style>
       /* Tokens: los mismos nombres y valores que DESIGN.md y src/tema/. */
       :root {
-        --fondo: #0f1420;
-        --superficie: #1a2133;
-        --superficieAlta: #242d44;
-        --borde: #33405e;
-        --texto: #f2f4f8;
-        --textoSuave: #a3adc2;
-        --primario: #f5b301;
-        --textoSobrePrimario: #1a1300;
-        --dato: #ffd166;
-        --peligro: #ff6b6b;
-        --peligroSuave: #2c1e29;
-        --exito: #4cd18a;
-        --aviso: #ffb547;
-        --barra: #8f6a0a;
-        --barraVacia: #33405e;
-        --estadoPorVer: #a3adc2;
-        --estadoViendo: #ffb547;
-        --estadoVista: #4cd18a;
-        --xxs: 2px;
-        --xs: 4px;
-        --s: 8px;
-        --m: 12px;
-        --l: 16px;
-        --xl: 24px;
-        --xxl: 32px;
-        --rChico: 6px;
-        --rMedio: 10px;
-        --rGrande: 12px;
-        --tocable: 44px;
+        --tinta: #000000;
+        --papel: #ffffff;
+        --ceniza: #eeeeee;
+        --concreto: #d9d9d9;
+        --carbon: #333333;
+        --pizarra: #595959;
+        --piedra: #808080;
+        --confirmacion: #7ffeb1;
         --fuente: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       }
       * {
@@ -43,42 +22,47 @@
       }
       body {
         margin: 0;
-        background: var(--fondo);
-        color: var(--texto);
+        background: var(--papel);
+        color: var(--tinta);
         font-family: var(--fuente);
-        line-height: 1.45;
+        letter-spacing: 0.06em;
+        line-height: 1.4;
       }
       main {
         max-width: 1100px;
         margin: 0 auto;
-        padding: var(--xl) var(--l) 64px;
+        padding: 24px 16px 60px;
       }
-      h1,
-      h2,
-      h3 {
-        margin: 0 0 var(--m);
+      h1 {
+        font-size: 28px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin: 0 0 8px;
       }
       h2 {
-        font-size: 22px;
-        border-bottom: 1px solid var(--borde);
-        padding-bottom: var(--s);
-        margin-top: 48px;
+        font-size: 24px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin: 60px 0 16px;
+        padding-top: 16px;
+        border-top: 1px solid var(--tinta);
       }
       h3 {
-        font-size: 16px;
-        color: var(--textoSuave);
+        font-size: 14px;
+        font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.06em;
-        margin-top: var(--xl);
+        color: var(--carbon);
+        margin: 24px 0 12px;
       }
       p {
-        color: var(--textoSuave);
+        color: var(--carbon);
         max-width: 70ch;
+        font-size: 16px;
       }
       code {
         font-family: ui-monospace, Consolas, monospace;
         font-size: 13px;
-        color: var(--dato);
+        letter-spacing: 0;
       }
       table {
         border-collapse: collapse;
@@ -88,134 +72,131 @@
       th,
       td {
         text-align: left;
-        padding: var(--s);
-        border-bottom: 1px solid var(--borde);
+        padding: 8px;
+        border-bottom: 1px solid var(--concreto);
         vertical-align: middle;
       }
       th {
-        color: var(--textoSuave);
-        font-weight: 600;
+        color: var(--pizarra);
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+      .desliza {
+        overflow-x: auto;
       }
       .rejilla {
         display: grid;
-        gap: var(--l);
+        gap: 16px;
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       }
       .tarjeta {
-        background: var(--superficie);
-        border-radius: var(--rGrande);
-        padding: var(--l);
+        background: var(--ceniza);
+        border-radius: 8px;
+        padding: 16px;
       }
       .muestra {
         width: 28px;
         height: 28px;
-        border-radius: var(--rChico);
-        border: 1px solid var(--borde);
+        border-radius: 4px;
+        border: 1px solid var(--concreto);
         display: inline-block;
         vertical-align: middle;
       }
-      .ok {
-        color: var(--exito);
+      .si {
         font-weight: 700;
       }
-      .mal {
-        color: var(--peligro);
+      .si::before {
+        content: '✔ ';
+      }
+      .no {
         font-weight: 700;
+      }
+      .no::before {
+        content: '✖ ';
       }
 
       /* Marca */
       .wordmark {
-        display: inline-flex;
-        flex-direction: column;
-        align-items: center;
-        padding: var(--m) var(--xl);
-        border: 3px solid var(--primario);
-        border-radius: var(--rGrande);
-        position: relative;
-      }
-      .wordmark .luces {
-        display: flex;
-        gap: 10px;
-      }
-      .wordmark .luces i {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: var(--primario);
-        display: block;
+        display: inline-block;
+        background: var(--tinta);
+        color: var(--papel);
+        padding: 12px 24px 8px;
+        border-radius: 8px;
+        line-height: 0.83;
       }
       .wordmark b {
-        font-size: 32px;
-        font-weight: 800;
-        letter-spacing: 0.02em;
-        color: var(--primario);
-        margin: var(--xs) 0;
+        display: block;
+        font-size: 56px;
+        font-weight: 700;
+        letter-spacing: 0;
+        text-transform: uppercase;
       }
       .wordmark small {
+        display: block;
         font-size: 12px;
         letter-spacing: 0.3em;
-        color: var(--textoSuave);
+        margin: 12px 0 4px;
       }
       .marca-fila {
         display: flex;
-        gap: var(--xxl);
+        gap: 32px;
         align-items: flex-end;
         flex-wrap: wrap;
       }
       .tmdb {
         display: flex;
         align-items: center;
-        gap: var(--s);
+        gap: 8px;
         font-size: 12px;
-        color: var(--textoSuave);
+        color: var(--pizarra);
+        max-width: 320px;
       }
 
-      /* Componentes (mismas medidas que en React Native) */
+      /* Componentes */
       .boton {
         min-height: 48px;
-        border-radius: var(--rMedio);
-        padding: 0 var(--l);
-        font: 700 16px var(--fuente);
-        border: 0;
+        border-radius: 40px;
+        padding: 12px 22px;
+        font: 700 12px var(--fuente);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
         cursor: pointer;
         width: 100%;
       }
       .boton.primario {
-        background: var(--primario);
-        color: var(--textoSobrePrimario);
+        background: var(--tinta);
+        color: var(--papel);
+        border: 0;
       }
       .boton.secundario {
-        background: var(--superficieAlta);
-        color: var(--texto);
-      }
-      .boton.peligro {
         background: transparent;
-        color: var(--peligro);
-        border: 1px solid var(--peligro);
+        color: var(--tinta);
+        border: 1px solid var(--tinta);
       }
       .chip {
-        min-height: var(--tocable);
-        padding: 0 var(--l);
-        border-radius: 22px;
-        border: 1px solid var(--borde);
-        background: transparent;
-        color: var(--texto);
-        font: 600 14px var(--fuente);
+        min-height: 44px;
+        padding: 0 16px;
+        border-radius: 100px;
+        border: 1px solid var(--concreto);
+        background: var(--papel);
+        color: var(--tinta);
+        font: 700 14px var(--fuente);
+        letter-spacing: 0.06em;
         display: inline-flex;
         align-items: center;
       }
       .chip.activo {
-        background: var(--primario);
-        border-color: var(--primario);
-        color: var(--textoSobrePrimario);
+        background: var(--tinta);
+        border-color: var(--tinta);
+        color: var(--papel);
       }
       .chips {
         display: flex;
-        gap: var(--s);
+        gap: 8px;
         flex-wrap: wrap;
       }
       .estrellas {
-        color: var(--primario);
         font-size: 20px;
         letter-spacing: 6px;
       }
@@ -225,17 +206,17 @@
       }
       .obra {
         display: flex;
-        gap: var(--m);
+        gap: 12px;
         align-items: center;
-        background: var(--superficie);
-        padding: var(--m);
-        border-radius: var(--rGrande);
+        background: var(--ceniza);
+        padding: 12px;
+        border-radius: 8px;
       }
       .poster {
         width: 56px;
         height: 84px;
-        border-radius: var(--rChico);
-        background: linear-gradient(160deg, var(--superficieAlta), var(--borde));
+        border-radius: 8px;
+        background: repeating-linear-gradient(135deg, var(--concreto) 0 6px, var(--ceniza) 6px 12px);
         flex: none;
       }
       .obra b {
@@ -244,97 +225,103 @@
       }
       .obra span {
         font-size: 14px;
-        color: var(--textoSuave);
+        color: var(--pizarra);
       }
       .dato {
-        background: var(--superficie);
-        border-radius: var(--rGrande);
-        padding: var(--l);
+        background: var(--ceniza);
+        border-radius: 8px;
+        padding: 16px;
       }
       .dato .valor {
-        font-size: 40px;
-        font-weight: 800;
-        color: var(--dato);
-        line-height: 1.1;
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 1.22;
         font-variant-numeric: tabular-nums;
+      }
+      .dato .valor.texto {
+        font-size: 18px;
       }
       .dato .etiqueta {
         font-size: 14px;
-        color: var(--textoSuave);
+        color: var(--pizarra);
       }
       .dato .nota {
         font-size: 12px;
-        color: var(--textoSuave);
-        margin-top: var(--xs);
+        color: var(--pizarra);
+        margin-top: 4px;
       }
       .barras {
-        background: var(--superficie);
-        border-radius: var(--rGrande);
-        padding: var(--l);
+        background: var(--ceniza);
+        border-radius: 8px;
+        padding: 16px;
       }
       .barras .fila {
         display: flex;
         align-items: flex-end;
-        gap: var(--xs);
-        height: 96px;
+        gap: 4px;
+        height: 100px;
       }
       .barras .col {
         flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: var(--xs);
+        gap: 4px;
         height: 100%;
         justify-content: flex-end;
       }
       .barras .b {
         width: 100%;
-        background: var(--barra);
-        border-radius: var(--rChico) var(--rChico) 0 0;
-        min-height: 3px;
+        background: var(--carbon);
+        border-radius: 4px 4px 0 0;
       }
       .barras .b.cero {
-        background: var(--barraVacia);
+        background: var(--piedra);
+        height: 3px;
       }
       .barras .b.top {
-        background: var(--primario);
+        background: var(--tinta);
       }
       .barras .mes {
         font-size: 12px;
-        color: var(--textoSuave);
+        color: var(--pizarra);
+      }
+      .barras .mes.top {
+        color: var(--tinta);
+        font-weight: 700;
       }
       .destacada {
         display: flex;
-        gap: var(--m);
-        background: var(--superficieAlta);
-        border: 1px solid var(--primario);
-        border-radius: var(--rGrande);
-        padding: var(--m);
+        gap: 12px;
+        background: var(--tinta);
+        color: var(--papel);
+        border-radius: 8px;
+        padding: 16px;
         align-items: center;
       }
       .destacada .poster {
         width: 72px;
         height: 108px;
+        background: repeating-linear-gradient(135deg, var(--carbon) 0 6px, var(--tinta) 6px 12px);
       }
       .destacada small {
-        color: var(--primario);
         font-weight: 700;
         font-size: 12px;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.2em;
       }
       .selector {
         display: flex;
-        gap: var(--s);
+        gap: 8px;
         overflow-x: auto;
       }
       .estado-pantalla {
-        background: var(--superficie);
-        border-radius: var(--rGrande);
-        padding: var(--xl) var(--l);
+        background: var(--ceniza);
+        border-radius: 8px;
+        padding: 24px 16px;
         text-align: center;
         display: flex;
         flex-direction: column;
-        gap: var(--m);
+        gap: 12px;
         align-items: center;
       }
       .estado-pantalla .icono {
@@ -345,27 +332,27 @@
       }
       .estado-pantalla span {
         font-size: 14px;
-        color: var(--textoSuave);
+        color: var(--pizarra);
       }
       .aviso {
-        background: var(--aviso);
-        color: var(--fondo);
-        font-weight: 600;
+        background: var(--tinta);
+        color: var(--papel);
+        font-weight: 700;
         font-size: 14px;
-        padding: var(--s) var(--l);
-        border-radius: var(--rChico);
+        padding: 8px 16px;
       }
       .aviso-suave {
-        background: var(--superficieAlta);
-        color: var(--textoSuave);
+        background: var(--ceniza);
+        color: var(--carbon);
         font-size: 14px;
-        padding: var(--s) var(--m);
-        border-radius: var(--rChico);
-        border-left: 3px solid var(--aviso);
+        padding: 8px 12px;
+        border-radius: 4px;
+        border-left: 3px solid var(--tinta);
+        text-align: left;
       }
       .progreso {
         height: 6px;
-        background: var(--barraVacia);
+        background: var(--piedra);
         border-radius: 3px;
         overflow: hidden;
       }
@@ -373,74 +360,82 @@
         display: block;
         height: 100%;
         width: 40%;
-        background: var(--primario);
+        background: var(--tinta);
+      }
+      .confirmacion {
+        background: var(--confirmacion);
+        color: var(--tinta);
+        font-weight: 700;
+        font-size: 14px;
+        padding: 8px 16px;
+        border-radius: 100px;
+        display: inline-block;
       }
       .spinner {
         width: 32px;
         height: 32px;
-        border: 3px solid var(--borde);
-        border-top-color: var(--primario);
+        border: 3px solid var(--concreto);
+        border-top-color: var(--tinta);
         border-radius: 50%;
       }
+      .hero {
+        font-size: 106px;
+        line-height: 0.83;
+        font-weight: 700;
+        letter-spacing: 0;
+      }
 
-      /* Teléfono */
+      /* Teléfono: marco negro de radio 40, sin sombra */
       .telefono {
         width: 375px;
         max-width: 100%;
-        border: 10px solid #000;
+        border: 10px solid var(--tinta);
         border-radius: 40px;
-        background: var(--fondo);
+        background: var(--papel);
         overflow: hidden;
         margin: 0 auto;
       }
       .telefono .pantalla {
         height: 760px;
         overflow-y: auto;
-        padding: var(--l);
+        padding: 16px;
         display: flex;
         flex-direction: column;
-        gap: var(--m);
+        gap: 12px;
       }
       .telefono .encabezado {
         font-size: 28px;
-        font-weight: 800;
+        font-weight: 700;
+        text-transform: uppercase;
       }
       .telefono .dos {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: var(--m);
+        gap: 12px;
       }
       .telefono .tabs {
         display: flex;
         justify-content: space-around;
-        border-top: 1px solid var(--borde);
-        background: var(--superficie);
-        padding: var(--s) 0;
+        border-top: 1px solid var(--concreto);
+        padding: 8px 0;
         font-size: 12px;
-        color: var(--textoSuave);
+        color: var(--pizarra);
       }
       .telefono .tabs .on {
-        color: var(--primario);
+        color: var(--tinta);
         font-weight: 700;
       }
       .escala-espacio div {
         display: flex;
         align-items: center;
-        gap: var(--m);
-        margin-bottom: var(--s);
+        gap: 12px;
+        margin-bottom: 8px;
         font-size: 14px;
       }
       .escala-espacio i {
         display: block;
         height: 16px;
-        background: var(--primario);
-        border-radius: 2px;
-      }
-      .sino td:first-child {
-        color: var(--exito);
-      }
-      .sino td:last-child {
-        color: var(--peligro);
+        background: var(--tinta);
       }
     </style>
   </head>
@@ -448,18 +443,18 @@
     <main>
       <h1>Brand board · Mi Cartelera</h1>
       <p>
-        Decisiones visuales de la app a partir de <code>docs/diseno/BRIEF.md</code>: nocturna, cálida y honesta. Cada
-        valor tiene un token; los mismos nombres están en <code>DESIGN.md</code> y en <code>src/tema/</code>.
+        Decisiones visuales a partir de <code>docs/diseno/BRIEF.md</code> y de la referencia de estilo de la autora
+        (<code>referencia-estilo.md</code>): un afiche de concierto en blanco y negro, ruidoso en los titulares y
+        callado en lo demás. Cada valor tiene un token; los mismos nombres están en <code>DESIGN.md</code> y en
+        <code>src/tema/</code>.
       </p>
 
-      <!-- MARCA -->
+      <!-- 1. MARCA -->
       <h2>1. Marca</h2>
       <div class="marca-fila">
         <div class="wordmark" aria-label="Wordmark Mi Cartelera">
-          <span class="luces"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-          <b>Mi Cartelera</b>
+          <b>Mi</b><b>Cartelera</b>
           <small>TU AÑO EN CINE</small>
-          <span class="luces"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
         </div>
         <div class="tmdb" aria-label="Atribución de TMDB">
           <svg width="48" height="35" viewBox="0 0 185.04 133.4" aria-hidden="true">
@@ -478,13 +473,14 @@
         </div>
       </div>
       <p>
-        La marquesina ámbar es la marca. El logo de TMDB se muestra a 72 px de ancho como máximo, en
-        <code>textoSuave</code>, siempre debajo de la marca y nunca en el encabezado. (Arriba, un esquema del logo; en
-        la app se usa el SVG oficial.)
+        Wordmark propio: «MI CARTELERA» en mayúsculas, negrita de la fuente del sistema, en un bloque negro de radio 8.
+        El logo de TMDB es artwork de terceros (por eso conserva su color): máximo 72 px de ancho, solo en Acerca de y
+        siempre debajo de la marca. (Arriba, un esquema del logo; en la app se usa el SVG oficial.)
       </p>
 
-      <!-- COLOR -->
+      <!-- 2. COLOR -->
       <h2>2. Color</h2>
+      <h3>Paleta (solo negro, blanco y grises)</h3>
       <table>
         <thead>
           <tr>
@@ -494,120 +490,92 @@
             <th>Uso</th>
           </tr>
         </thead>
-        <tbody id="paleta">
+        <tbody>
           <tr>
-            <td><span class="muestra" style="background: #0f1420"></span></td>
-            <td><code>fondo</code></td>
-            <td>#0f1420</td>
-            <td>Fondo de todas las pantallas</td>
+            <td><span class="muestra" style="background: #000000"></span></td>
+            <td><code>tinta</code></td>
+            <td>#000000</td>
+            <td>Texto, botón lleno, chip activo, bandas oscuras, cifras, estado vista</td>
           </tr>
           <tr>
-            <td><span class="muestra" style="background: #1a2133"></span></td>
-            <td><code>superficie</code></td>
-            <td>#1a2133</td>
-            <td>Tarjetas, barra de pestañas</td>
+            <td><span class="muestra" style="background: #ffffff"></span></td>
+            <td><code>papel</code></td>
+            <td>#ffffff</td>
+            <td>Fondo de pantallas, texto sobre tinta</td>
           </tr>
           <tr>
-            <td><span class="muestra" style="background: #242d44"></span></td>
-            <td><code>superficieAlta</code></td>
-            <td>#242d44</td>
-            <td>Botón secundario, obra destacada, avisos suaves</td>
+            <td><span class="muestra" style="background: #eeeeee"></span></td>
+            <td><code>ceniza</code></td>
+            <td>#eeeeee</td>
+            <td>Tarjetas, relleno detrás de pósters, avisos suaves</td>
           </tr>
           <tr>
-            <td><span class="muestra" style="background: #33405e"></span></td>
-            <td><code>borde</code></td>
-            <td>#33405e</td>
-            <td>Bordes, chips inactivos, estrellas deshabilitadas</td>
+            <td><span class="muestra" style="background: #d9d9d9"></span></td>
+            <td><code>concreto</code></td>
+            <td>#d9d9d9</td>
+            <td>Bordes, divisores, chips inactivos, estrellas deshabilitadas (nunca texto)</td>
           </tr>
           <tr>
-            <td><span class="muestra" style="background: #f2f4f8"></span></td>
-            <td><code>texto</code></td>
-            <td>#f2f4f8</td>
-            <td>Texto principal</td>
+            <td><span class="muestra" style="background: #333333"></span></td>
+            <td><code>carbon</code></td>
+            <td>#333333</td>
+            <td>Barras por mes, estado viendo, texto secundario fuerte</td>
           </tr>
           <tr>
-            <td><span class="muestra" style="background: #a3adc2"></span></td>
-            <td><code>textoSuave</code></td>
-            <td>#a3adc2</td>
-            <td>Metadatos, etiquetas, notas</td>
+            <td><span class="muestra" style="background: #595959"></span></td>
+            <td><code>pizarra</code></td>
+            <td>#595959</td>
+            <td>Texto suave, metadatos, estado por ver, pestaña inactiva</td>
           </tr>
           <tr>
-            <td><span class="muestra" style="background: #f5b301"></span></td>
-            <td><code>primario</code></td>
-            <td>#f5b301</td>
-            <td>Marca, chip activo, botón primario, mes más activo</td>
+            <td><span class="muestra" style="background: #808080"></span></td>
+            <td><code>piedra</code></td>
+            <td>#808080</td>
+            <td>Deshabilitado, mes con 0 obras, pista de progreso (nunca texto: 3,95:1)</td>
           </tr>
           <tr>
-            <td><span class="muestra" style="background: #1a1300"></span></td>
-            <td><code>textoSobrePrimario</code></td>
-            <td>#1a1300</td>
-            <td>Texto sobre primario</td>
-          </tr>
-          <tr>
-            <td><span class="muestra" style="background: #ffd166"></span></td>
-            <td><code>dato</code></td>
-            <td>#ffd166</td>
-            <td>Cifras grandes del resumen</td>
-          </tr>
-          <tr>
-            <td><span class="muestra" style="background: #ff6b6b"></span></td>
-            <td><code>peligro</code></td>
-            <td>#ff6b6b</td>
-            <td>Errores y acciones destructivas</td>
-          </tr>
-          <tr>
-            <td><span class="muestra" style="background: #2c1e29"></span></td>
-            <td><code>peligroSuave</code></td>
-            <td>#2c1e29</td>
-            <td>Fondo de mensajes de error del formulario</td>
-          </tr>
-          <tr>
-            <td><span class="muestra" style="background: #4cd18a"></span></td>
-            <td><code>exito</code></td>
-            <td>#4cd18a</td>
-            <td>Confirmaciones</td>
-          </tr>
-          <tr>
-            <td><span class="muestra" style="background: #ffb547"></span></td>
-            <td><code>aviso</code></td>
-            <td>#ffb547</td>
-            <td>Aviso sin conexión, avisos de datos incompletos</td>
-          </tr>
-          <tr>
-            <td><span class="muestra" style="background: #8f6a0a"></span></td>
-            <td><code>barra</code></td>
-            <td>#8f6a0a</td>
-            <td>Barras por mes</td>
-          </tr>
-          <tr>
-            <td><span class="muestra" style="background: #33405e"></span></td>
-            <td><code>barraVacia</code></td>
-            <td>#33405e</td>
-            <td>Mes con 0 obras, pista de progreso</td>
-          </tr>
-          <tr>
-            <td><span class="muestra" style="background: #a3adc2"></span></td>
-            <td><code>estadoPorVer</code></td>
-            <td>#a3adc2</td>
-            <td>Estado por ver</td>
-          </tr>
-          <tr>
-            <td><span class="muestra" style="background: #ffb547"></span></td>
-            <td><code>estadoViendo</code></td>
-            <td>#ffb547</td>
-            <td>Estado viendo</td>
-          </tr>
-          <tr>
-            <td><span class="muestra" style="background: #4cd18a"></span></td>
-            <td><code>estadoVista</code></td>
-            <td>#4cd18a</td>
-            <td>Estado vista</td>
+            <td><span class="muestra" style="background: #7ffeb1"></span></td>
+            <td><code>confirmacion</code></td>
+            <td>#7ffeb1</td>
+            <td>Único color: fondo de la confirmación «Está en tu lista». Nunca texto, borde ni botón</td>
           </tr>
         </tbody>
       </table>
 
-      <h3>Contraste de texto (mínimo 4,5:1)</h3>
-      <p>Calculado en esta página con la fórmula de WCAG 2.1 a partir de los tokens de arriba.</p>
+      <h3>Estados y error</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Estado</th>
+            <th>Color</th>
+            <th>Además del tono</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="estado" style="color: #595959">◷ Por ver</td>
+            <td><code>estadoPorVer = pizarra</code></td>
+            <td>Ícono de reloj</td>
+          </tr>
+          <tr>
+            <td class="estado" style="color: #333333">▶ Viendo</td>
+            <td><code>estadoViendo = carbon</code></td>
+            <td>Ícono de reproducir</td>
+          </tr>
+          <tr>
+            <td class="estado" style="color: #000000">✔ Vista</td>
+            <td><code>estadoVista = tinta</code></td>
+            <td>Ícono de doble check y negrita</td>
+          </tr>
+          <tr>
+            <td class="estado" style="color: #000000">⚠ Error</td>
+            <td><code>peligro = tinta</code>, fondo <code>peligroSuave = ceniza</code></td>
+            <td>Ícono de alerta, negrita y texto que explica qué pasó; nunca solo color</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Contraste de texto (mínimo 4,5:1, WCAG 2.1)</h3>
       <table>
         <thead>
           <tr>
@@ -618,341 +586,213 @@
             <th>Cumple</th>
           </tr>
         </thead>
-        <tbody id="contrastes">
-          <tr>
-            <td>
-              <span style="background: #0f1420; color: #f2f4f8; padding: 4px 10px; border-radius: 6px; font-weight: 600"
-                >Aa</span
-              >
-            </td>
-            <td><code>texto</code></td>
-            <td><code>fondo</code></td>
-            <td>16,71:1</td>
-            <td class="ok">Sí</td>
-          </tr>
-          <tr>
-            <td>
-              <span style="background: #1a2133; color: #f2f4f8; padding: 4px 10px; border-radius: 6px; font-weight: 600"
-                >Aa</span
-              >
-            </td>
-            <td><code>texto</code></td>
-            <td><code>superficie</code></td>
-            <td>14,57:1</td>
-            <td class="ok">Sí</td>
-          </tr>
-          <tr>
-            <td>
-              <span style="background: #242d44; color: #f2f4f8; padding: 4px 10px; border-radius: 6px; font-weight: 600"
-                >Aa</span
-              >
-            </td>
-            <td><code>texto</code></td>
-            <td><code>superficieAlta</code></td>
-            <td>12,43:1</td>
-            <td class="ok">Sí</td>
-          </tr>
-          <tr>
-            <td>
-              <span style="background: #0f1420; color: #a3adc2; padding: 4px 10px; border-radius: 6px; font-weight: 600"
-                >Aa</span
-              >
-            </td>
-            <td><code>textoSuave</code></td>
-            <td><code>fondo</code></td>
-            <td>8,16:1</td>
-            <td class="ok">Sí</td>
-          </tr>
-          <tr>
-            <td>
-              <span style="background: #1a2133; color: #a3adc2; padding: 4px 10px; border-radius: 6px; font-weight: 600"
-                >Aa</span
-              >
-            </td>
-            <td><code>textoSuave</code></td>
-            <td><code>superficie</code></td>
-            <td>7,11:1</td>
-            <td class="ok">Sí</td>
-          </tr>
-          <tr>
-            <td>
-              <span style="background: #242d44; color: #a3adc2; padding: 4px 10px; border-radius: 6px; font-weight: 600"
-                >Aa</span
-              >
-            </td>
-            <td><code>textoSuave</code></td>
-            <td><code>superficieAlta</code></td>
-            <td>6,07:1</td>
-            <td class="ok">Sí</td>
-          </tr>
-          <tr>
-            <td>
-              <span style="background: #f5b301; color: #1a1300; padding: 4px 10px; border-radius: 6px; font-weight: 600"
-                >Aa</span
-              >
-            </td>
-            <td><code>textoSobrePrimario</code></td>
-            <td><code>primario</code></td>
-            <td>9,97:1</td>
-            <td class="ok">Sí</td>
-          </tr>
-          <tr>
-            <td>
-              <span style="background: #0f1420; color: #f5b301; padding: 4px 10px; border-radius: 6px; font-weight: 600"
-                >Aa</span
-              >
-            </td>
-            <td><code>primario</code></td>
-            <td><code>fondo</code></td>
-            <td>9,93:1</td>
-            <td class="ok">Sí</td>
-          </tr>
-          <tr>
-            <td>
-              <span style="background: #1a2133; color: #f5b301; padding: 4px 10px; border-radius: 6px; font-weight: 600"
-                >Aa</span
-              >
-            </td>
-            <td><code>primario</code></td>
-            <td><code>superficie</code></td>
-            <td>8,65:1</td>
-            <td class="ok">Sí</td>
-          </tr>
-          <tr>
-            <td>
-              <span style="background: #1a2133; color: #ffd166; padding: 4px 10px; border-radius: 6px; font-weight: 600"
-                >Aa</span
-              >
-            </td>
-            <td><code>dato</code></td>
-            <td><code>superficie</code></td>
-            <td>11,12:1</td>
-            <td class="ok">Sí</td>
-          </tr>
-          <tr>
-            <td>
-              <span style="background: #0f1420; color: #ff6b6b; padding: 4px 10px; border-radius: 6px; font-weight: 600"
-                >Aa</span
-              >
-            </td>
-            <td><code>peligro</code></td>
-            <td><code>fondo</code></td>
-            <td>6,63:1</td>
-            <td class="ok">Sí</td>
-          </tr>
-          <tr>
-            <td>
-              <span style="background: #1a2133; color: #ff6b6b; padding: 4px 10px; border-radius: 6px; font-weight: 600"
-                >Aa</span
-              >
-            </td>
-            <td><code>peligro</code></td>
-            <td><code>superficie</code></td>
-            <td>5,78:1</td>
-            <td class="ok">Sí</td>
-          </tr>
-          <tr>
-            <td>
-              <span style="background: #2c1e29; color: #ff6b6b; padding: 4px 10px; border-radius: 6px; font-weight: 600"
-                >Aa</span
-              >
-            </td>
-            <td><code>peligro</code></td>
-            <td><code>peligroSuave</code></td>
-            <td>5,71:1</td>
-            <td class="ok">Sí</td>
-          </tr>
-          <tr>
-            <td>
-              <span style="background: #1a2133; color: #4cd18a; padding: 4px 10px; border-radius: 6px; font-weight: 600"
-                >Aa</span
-              >
-            </td>
-            <td><code>estadoVista</code></td>
-            <td><code>superficie</code></td>
-            <td>8,24:1</td>
-            <td class="ok">Sí</td>
-          </tr>
-          <tr>
-            <td>
-              <span style="background: #1a2133; color: #ffb547; padding: 4px 10px; border-radius: 6px; font-weight: 600"
-                >Aa</span
-              >
-            </td>
-            <td><code>estadoViendo</code></td>
-            <td><code>superficie</code></td>
-            <td>9,13:1</td>
-            <td class="ok">Sí</td>
-          </tr>
-          <tr>
-            <td>
-              <span style="background: #1a2133; color: #a3adc2; padding: 4px 10px; border-radius: 6px; font-weight: 600"
-                >Aa</span
-              >
-            </td>
-            <td><code>estadoPorVer</code></td>
-            <td><code>superficie</code></td>
-            <td>7,11:1</td>
-            <td class="ok">Sí</td>
-          </tr>
-          <tr>
-            <td>
-              <span style="background: #ffb547; color: #0f1420; padding: 4px 10px; border-radius: 6px; font-weight: 600"
-                >Aa</span
-              >
-            </td>
-            <td><code>fondo</code></td>
-            <td><code>aviso</code></td>
-            <td>10,47:1</td>
-            <td class="ok">Sí</td>
-          </tr>
-          <tr>
-            <td>
-              <span style="background: #33405e; color: #a3adc2; padding: 4px 10px; border-radius: 6px; font-weight: 600"
-                >Aa</span
-              >
-            </td>
-            <td><code>textoSuave</code></td>
-            <td><code>borde</code></td>
-            <td>4,58:1</td>
-            <td class="ok">Sí</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <!-- TIPOGRAFÍA -->
-      <h2>3. Tipografía</h2>
-      <p>Fuente del sistema (San Francisco en iOS, Roboto en Android). Sin fuentes descargadas.</p>
-      <table>
-        <thead>
-          <tr>
-            <th>Token</th>
-            <th>Tamaño / peso</th>
-            <th>Uso</th>
-            <th>Ejemplo</th>
-          </tr>
-        </thead>
         <tbody>
           <tr>
-            <td><code>tipo.dato</code></td>
-            <td>40 / 800</td>
-            <td>Cifras del resumen</td>
-            <td style="font-size: 40px; font-weight: 800; color: var(--dato)">37,5</td>
+            <td>
+              <span style="background: #ffffff; color: #000000; padding: 4px 10px; border: 1px solid #d9d9d9">Aa</span>
+            </td>
+            <td><code>tinta</code></td>
+            <td><code>papel</code></td>
+            <td>21,00:1</td>
+            <td class="si">Sí</td>
           </tr>
           <tr>
-            <td><code>tipo.marca</code></td>
-            <td>32 / 800</td>
-            <td>Wordmark y título del login</td>
-            <td style="font-size: 32px; font-weight: 800; color: var(--primario)">Mi Cartelera</td>
+            <td><span style="background: #eeeeee; color: #000000; padding: 4px 10px">Aa</span></td>
+            <td><code>tinta</code></td>
+            <td><code>ceniza</code></td>
+            <td>18,10:1</td>
+            <td class="si">Sí</td>
           </tr>
           <tr>
-            <td><code>tipo.titulo</code></td>
-            <td>28 / 800</td>
-            <td>Encabezado de pantalla</td>
-            <td style="font-size: 28px; font-weight: 800">Mi año</td>
+            <td>
+              <span style="background: #ffffff; color: #333333; padding: 4px 10px; border: 1px solid #d9d9d9">Aa</span>
+            </td>
+            <td><code>carbon</code></td>
+            <td><code>papel</code></td>
+            <td>12,63:1</td>
+            <td class="si">Sí</td>
           </tr>
           <tr>
-            <td><code>tipo.subtitulo</code></td>
-            <td>20 / 700</td>
-            <td>Título de sección o del detalle</td>
-            <td style="font-size: 20px; font-weight: 700">Mes más activo</td>
+            <td><span style="background: #eeeeee; color: #333333; padding: 4px 10px">Aa</span></td>
+            <td><code>carbon</code></td>
+            <td><code>ceniza</code></td>
+            <td>10,89:1</td>
+            <td class="si">Sí</td>
           </tr>
           <tr>
-            <td><code>tipo.destacado</code></td>
-            <td>18 / 700</td>
-            <td>Título de estado vacío o error</td>
-            <td style="font-size: 18px; font-weight: 700">No viste nada en 2025</td>
+            <td>
+              <span style="background: #ffffff; color: #595959; padding: 4px 10px; border: 1px solid #d9d9d9">Aa</span>
+            </td>
+            <td><code>pizarra</code></td>
+            <td><code>papel</code></td>
+            <td>7,00:1</td>
+            <td class="si">Sí</td>
           </tr>
           <tr>
-            <td><code>tipo.cuerpo</code></td>
-            <td>16 / 400–700</td>
-            <td>Texto general, títulos de tarjeta, botones</td>
-            <td style="font-size: 16px">Dune: Parte Dos</td>
+            <td><span style="background: #eeeeee; color: #595959; padding: 4px 10px">Aa</span></td>
+            <td><code>pizarra</code></td>
+            <td><code>ceniza</code></td>
+            <td>6,04:1</td>
+            <td class="si">Sí</td>
           </tr>
           <tr>
-            <td><code>tipo.secundario</code></td>
-            <td>14 / 400–700</td>
-            <td>Metadatos, etiquetas, chips, avisos</td>
-            <td style="font-size: 14px; color: var(--textoSuave)">Película · 2024</td>
+            <td><span style="background: #000000; color: #ffffff; padding: 4px 10px">Aa</span></td>
+            <td><code>papel</code></td>
+            <td><code>tinta</code></td>
+            <td>21,00:1</td>
+            <td class="si">Sí</td>
           </tr>
           <tr>
-            <td><code>tipo.nota</code></td>
-            <td>12 / 400–700</td>
-            <td>Notas al pie, meses de las barras</td>
-            <td style="font-size: 12px; color: var(--textoSuave)">2 películas sin duración</td>
+            <td><span style="background: #7ffeb1; color: #000000; padding: 4px 10px">Aa</span></td>
+            <td><code>tinta</code></td>
+            <td><code>confirmacion</code></td>
+            <td>16,71:1</td>
+            <td class="si">Sí</td>
+          </tr>
+          <tr>
+            <td>
+              <span style="background: #ffffff; color: #808080; padding: 4px 10px; border: 1px solid #d9d9d9">Aa</span>
+            </td>
+            <td><code>piedra</code></td>
+            <td><code>papel</code></td>
+            <td>3,95:1</td>
+            <td class="no">No: por eso <code>piedra</code> nunca se usa para texto</td>
           </tr>
         </tbody>
       </table>
 
-      <!-- ESPACIO Y FORMA -->
+      <!-- 3. TIPOGRAFÍA -->
+      <h2>3. Tipografía</h2>
+      <p>
+        Fuente del sistema (San Francisco en iOS, Roboto en Android): las fuentes de la referencia son de pago y la
+        entrega pide la del sistema. Tracking de 0,06 em en todo (salvo el display), pesos 300, 400 y 700, nunca 500 ni
+        600.
+      </p>
+      <div class="desliza">
+        <table>
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Tamaño / interlineado / peso</th>
+              <th>Uso</th>
+              <th>Ejemplo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>tipo.display</code></td>
+              <td>106 / 0,83 / 700, tracking 0</td>
+              <td>Solo el año del resumen</td>
+              <td class="hero">2026</td>
+            </tr>
+            <tr>
+              <td><code>tipo.titulo</code></td>
+              <td>28 / 1,22 / 700</td>
+              <td>Encabezado de pantalla (mayúsculas), cifras del resumen, marca del login</td>
+              <td style="font-size: 28px; font-weight: 700">MI AÑO</td>
+            </tr>
+            <tr>
+              <td><code>tipo.subtitulo</code></td>
+              <td>24 / 1,25 / 700</td>
+              <td>Título del detalle, título de sección</td>
+              <td style="font-size: 24px; font-weight: 700">Mes más activo</td>
+            </tr>
+            <tr>
+              <td><code>tipo.destacado</code></td>
+              <td>18 / 1,4 / 700</td>
+              <td>Título de estado vacío o error, cifras de texto (género, director)</td>
+              <td style="font-size: 18px; font-weight: 700">No viste nada en 2025.</td>
+            </tr>
+            <tr>
+              <td><code>tipo.cuerpo</code></td>
+              <td>16 / 1,4 / 400–700</td>
+              <td>Texto general, títulos de tarjeta</td>
+              <td style="font-size: 16px">Dune: Parte Dos</td>
+            </tr>
+            <tr>
+              <td><code>tipo.secundario</code></td>
+              <td>14 / 1,33 / 400–700</td>
+              <td>Metadatos, chips, avisos</td>
+              <td style="font-size: 14px; color: #595959">Película · 2024</td>
+            </tr>
+            <tr>
+              <td><code>tipo.nota</code></td>
+              <td>12 / 1,21 / 300–700</td>
+              <td>Botones (mayúsculas, 700), notas, iniciales de mes</td>
+              <td style="font-size: 12px; font-weight: 700">GUARDAR</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 4. ESPACIO Y FORMA -->
       <h2>4. Espacio y forma</h2>
       <div class="rejilla">
         <div class="tarjeta escala-espacio">
-          <h3 style="margin-top: 0">Espacios</h3>
-          <div><i style="width: 2px"></i><code>xxs</code> 2</div>
+          <h3 style="margin-top: 0">Espacios (base 4)</h3>
           <div><i style="width: 4px"></i><code>xs</code> 4</div>
           <div><i style="width: 8px"></i><code>s</code> 8</div>
           <div><i style="width: 12px"></i><code>m</code> 12</div>
           <div><i style="width: 16px"></i><code>l</code> 16</div>
+          <div><i style="width: 20px"></i><code>ml</code> 20</div>
           <div><i style="width: 24px"></i><code>xl</code> 24</div>
           <div><i style="width: 32px"></i><code>xxl</code> 32</div>
         </div>
         <div class="tarjeta">
           <h3 style="margin-top: 0">Radios</h3>
+          <p><span class="muestra" style="border-radius: 4px"></span> <code>radio.chico</code> 4 — barras, avisos</p>
           <p>
-            <span class="muestra" style="border-radius: 6px"></span> <code>radio.chico</code> 6 — pósters chicos, barras
+            <span class="muestra" style="border-radius: 8px"></span> <code>radio.tarjeta</code> 8 — tarjetas e imágenes
           </p>
-          <p><span class="muestra" style="border-radius: 10px"></span> <code>radio.medio</code> 10 — botones</p>
-          <p><span class="muestra" style="border-radius: 12px"></span> <code>radio.grande</code> 12 — tarjetas</p>
-          <p><span class="muestra" style="border-radius: 14px"></span> <code>radio.pildora</code> 22 — chips</p>
+          <p><span class="muestra" style="border-radius: 14px"></span> <code>radio.campo</code> 20 — campos de texto</p>
+          <p>
+            <span class="muestra" style="border-radius: 14px"></span> <code>radio.boton</code> 40 — botones (píldora)
+          </p>
+          <p><span class="muestra" style="border-radius: 50%"></span> <code>radio.etiqueta</code> 100 — chips</p>
         </div>
         <div class="tarjeta">
-          <h3 style="margin-top: 0">Táctil e íconos</h3>
-          <p><code>ALTURA_TOCABLE</code> 44: todo elemento tocable mide al menos 44 × 44. El botón mide 48.</p>
+          <h3 style="margin-top: 0">Táctil, íconos y elevación</h3>
+          <p><code>ALTURA_TOCABLE</code> 44: todo lo tocable mide al menos 44 × 44. El botón mide 48.</p>
           <p>
             <code>icono.chico</code> 16 · <code>icono.medio</code> 20 · <code>icono.grande</code> 48 ·
             <code>icono.enorme</code> 64
           </p>
+          <p>Sin sombras ni degradados: la separación la dan el espacio en blanco y el contraste.</p>
         </div>
       </div>
 
-      <!-- COMPONENTES -->
+      <!-- 5. COMPONENTES -->
       <h2>5. Componentes</h2>
       <h3>Del Proyecto 3 (se conservan)</h3>
       <div class="rejilla">
-        <div class="tarjeta">
+        <div class="tarjeta" style="background: #ffffff; border: 1px solid #d9d9d9">
           <p style="margin-top: 0"><b>Tarjeta de obra</b></p>
           <div class="obra">
             <div class="poster"></div>
             <div>
               <b>Dune: Parte Dos</b><span>Película · 2024</span><br />
-              <span class="estado" style="color: var(--estadoVista)">✔ Vista</span><br />
+              <span class="estado">✔ Vista</span><br />
               <span class="estrellas">★★★★★</span>
             </div>
           </div>
         </div>
-        <div class="tarjeta">
+        <div class="tarjeta" style="background: #ffffff; border: 1px solid #d9d9d9">
           <p style="margin-top: 0"><b>Selector de estado (chips)</b></p>
           <div class="chips">
             <span class="chip">Por ver</span><span class="chip">Viendo</span><span class="chip activo">Vista</span>
           </div>
-          <p>
-            Colores de estado:
-            <span class="estado" style="color: var(--estadoPorVer)">Por ver</span> ·
-            <span class="estado" style="color: var(--estadoViendo)">Viendo</span> ·
-            <span class="estado" style="color: var(--estadoVista)">Vista</span>
-          </p>
         </div>
-        <div class="tarjeta">
+        <div class="tarjeta" style="background: #ffffff; border: 1px solid #d9d9d9">
           <p style="margin-top: 0"><b>Estrellas</b></p>
           <span class="estrellas">★★★★☆</span>
-          <p>Tocable de 44 × 44 por estrella; en gris (<code>borde</code>) si no está vista.</p>
+          <p>Tocable de 44 × 44 por estrella; en <code>concreto</code> si la obra no está vista.</p>
         </div>
-        <div class="tarjeta" style="display: grid; gap: 8px">
-          <p style="margin: 0"><b>Botón</b></p>
+        <div class="tarjeta" style="background: #ffffff; border: 1px solid #d9d9d9; display: grid; gap: 8px">
+          <p style="margin: 0"><b>Botón (píldora)</b></p>
           <button class="boton primario">Guardar</button>
           <button class="boton secundario">Reintentar</button>
-          <button class="boton peligro">Quitar de mi lista</button>
+          <button class="boton secundario">Quitar de mi lista</button>
+          <span class="confirmacion">✔ Está en tu lista</span>
         </div>
       </div>
 
@@ -966,57 +806,57 @@
         <div class="dato">
           <div class="valor">58,5 h</div>
           <div class="etiqueta">de cine</div>
-          <div class="nota">2 películas sin duración</div>
+          <div class="nota">2 películas sin duración no suman horas.</div>
         </div>
         <div class="barras">
-          <p style="margin: 0 0 8px; color: var(--texto)"><b>Mes más activo: julio</b></p>
-          <div class="fila" id="barras-muestra">
+          <p style="margin: 0 0 8px; color: #000000"><b>Mes más activo: julio</b></p>
+          <div class="fila">
             <div class="col">
-              <div class="b" style="height: 34.285714285714285px" title="3 obras"></div>
+              <div class="b" style="height: 34px"></div>
               <span class="mes">E</span>
             </div>
             <div class="col">
-              <div class="b" style="height: 22.857142857142854px" title="2 obras"></div>
+              <div class="b" style="height: 23px"></div>
               <span class="mes">F</span>
             </div>
             <div class="col">
-              <div class="b" style="height: 45.71428571428571px" title="4 obras"></div>
+              <div class="b" style="height: 46px"></div>
               <span class="mes">M</span>
             </div>
             <div class="col">
-              <div class="b cero" style="height: 3px" title="0 obras"></div>
+              <div class="b cero"></div>
               <span class="mes">A</span>
             </div>
             <div class="col">
-              <div class="b" style="height: 34.285714285714285px" title="3 obras"></div>
+              <div class="b" style="height: 34px"></div>
               <span class="mes">M</span>
             </div>
             <div class="col">
-              <div class="b" style="height: 57.142857142857146px" title="5 obras"></div>
+              <div class="b" style="height: 57px"></div>
               <span class="mes">J</span>
             </div>
             <div class="col">
-              <div class="b top" style="height: 80px" title="7 obras"></div>
-              <span class="mes">J</span>
+              <div class="b top" style="height: 80px"></div>
+              <span class="mes top">J</span>
             </div>
             <div class="col">
-              <div class="b" style="height: 45.71428571428571px" title="4 obras"></div>
+              <div class="b" style="height: 46px"></div>
               <span class="mes">A</span>
             </div>
             <div class="col">
-              <div class="b" style="height: 22.857142857142854px" title="2 obras"></div>
+              <div class="b" style="height: 23px"></div>
               <span class="mes">S</span>
             </div>
             <div class="col">
-              <div class="b" style="height: 68.57142857142857px" title="6 obras"></div>
+              <div class="b" style="height: 69px"></div>
               <span class="mes">O</span>
             </div>
             <div class="col">
-              <div class="b cero" style="height: 3px" title="0 obras"></div>
+              <div class="b cero"></div>
               <span class="mes">N</span>
             </div>
             <div class="col">
-              <div class="b" style="height: 68.57142857142857px" title="6 obras"></div>
+              <div class="b" style="height: 69px"></div>
               <span class="mes">D</span>
             </div>
           </div>
@@ -1025,11 +865,11 @@
           <div class="poster"></div>
           <div>
             <small>OBRA DESTACADA</small>
-            <b style="display: block">Dune: Parte Dos</b>
+            <b style="display: block; font-size: 16px">Dune: Parte Dos</b>
             <span class="estrellas">★★★★★</span>
           </div>
         </div>
-        <div class="tarjeta">
+        <div class="tarjeta" style="background: #ffffff; border: 1px solid #d9d9d9">
           <p style="margin-top: 0"><b>Selector de año</b></p>
           <div class="selector">
             <span class="chip activo">2026</span><span class="chip">2025</span><span class="chip">2023</span>
@@ -1044,29 +884,30 @@
           <span>Cargando tu año…</span>
         </div>
         <div class="estado-pantalla">
-          <div class="icono">🎞️</div>
-          <b>No viste nada en 2025</b><span>Marca como vista una obra de tu lista y aparecerá aquí.</span>
+          <div class="icono">🎞</div>
+          <b>No viste nada en 2025.</b><span>Marca como vista una obra de tu lista y aparecerá aquí.</span>
           <button class="boton primario">Ir a Mi lista</button>
         </div>
         <div class="estado-pantalla">
-          <div class="icono" style="color: var(--peligro)">⚠</div>
+          <div class="icono">⚠</div>
           <b>No pudimos cargar tu lista</b><span>Revisa tu conexión e inténtalo de nuevo.</span>
           <button class="boton secundario">Reintentar</button>
         </div>
         <div class="estado-pantalla" style="gap: 8px">
           <div class="aviso" style="width: 100%">Sin conexión. Mostrando la última copia guardada.</div>
-          <div class="aviso-suave" style="width: 100%; text-align: left">Completando datos de TMDB: 2 de 5…</div>
+          <div class="aviso-suave" style="width: 100%">Completando datos de TMDB: 2 de 5…</div>
           <div class="progreso" style="width: 100%"><i></i></div>
-          <div class="aviso-suave" style="width: 100%; text-align: left">1 obra quedó sin datos de TMDB.</div>
+          <div class="aviso-suave" style="width: 100%">1 obra quedó sin datos de TMDB.</div>
         </div>
       </div>
 
-      <!-- PANTALLA DE EJEMPLO -->
+      <!-- 6. PANTALLA DE EJEMPLO -->
       <h2>6. Pantalla de ejemplo: Mi año</h2>
       <p>375 × 812, armada solo con los componentes de arriba.</p>
       <div class="telefono">
         <div class="pantalla">
           <div class="encabezado">Mi año</div>
+          <div class="hero">2026</div>
           <div class="selector">
             <span class="chip activo">2026</span><span class="chip">2025</span><span class="chip">2023</span>
           </div>
@@ -1080,77 +921,23 @@
             <div class="dato">
               <div class="valor">58,5 h</div>
               <div class="etiqueta">de cine</div>
-              <div class="nota">2 sin duración</div>
             </div>
             <div class="dato">
-              <div class="valor" style="font-size: 20px">Drama</div>
+              <div class="valor texto">Drama</div>
               <div class="etiqueta">género más visto</div>
               <div class="nota">14 obras</div>
             </div>
             <div class="dato">
-              <div class="valor" style="font-size: 20px">Denis Villeneuve</div>
+              <div class="valor texto">Denis Villeneuve</div>
               <div class="etiqueta">director más visto</div>
               <div class="nota">3 películas</div>
-            </div>
-          </div>
-          <div class="barras">
-            <p style="margin: 0 0 8px; color: var(--texto)"><b>Mes más activo: julio</b></p>
-            <div class="fila" id="barras-telefono">
-              <div class="col">
-                <div class="b" style="height: 34.285714285714285px" title="3 obras"></div>
-                <span class="mes">E</span>
-              </div>
-              <div class="col">
-                <div class="b" style="height: 22.857142857142854px" title="2 obras"></div>
-                <span class="mes">F</span>
-              </div>
-              <div class="col">
-                <div class="b" style="height: 45.71428571428571px" title="4 obras"></div>
-                <span class="mes">M</span>
-              </div>
-              <div class="col">
-                <div class="b cero" style="height: 3px" title="0 obras"></div>
-                <span class="mes">A</span>
-              </div>
-              <div class="col">
-                <div class="b" style="height: 34.285714285714285px" title="3 obras"></div>
-                <span class="mes">M</span>
-              </div>
-              <div class="col">
-                <div class="b" style="height: 57.142857142857146px" title="5 obras"></div>
-                <span class="mes">J</span>
-              </div>
-              <div class="col">
-                <div class="b top" style="height: 80px" title="7 obras"></div>
-                <span class="mes">J</span>
-              </div>
-              <div class="col">
-                <div class="b" style="height: 45.71428571428571px" title="4 obras"></div>
-                <span class="mes">A</span>
-              </div>
-              <div class="col">
-                <div class="b" style="height: 22.857142857142854px" title="2 obras"></div>
-                <span class="mes">S</span>
-              </div>
-              <div class="col">
-                <div class="b" style="height: 68.57142857142857px" title="6 obras"></div>
-                <span class="mes">O</span>
-              </div>
-              <div class="col">
-                <div class="b cero" style="height: 3px" title="0 obras"></div>
-                <span class="mes">N</span>
-              </div>
-              <div class="col">
-                <div class="b" style="height: 68.57142857142857px" title="6 obras"></div>
-                <span class="mes">D</span>
-              </div>
             </div>
           </div>
           <div class="destacada">
             <div class="poster"></div>
             <div>
               <small>OBRA DESTACADA</small>
-              <b style="display: block">Dune: Parte Dos</b>
+              <b style="display: block; font-size: 16px">Dune: Parte Dos</b>
               <span class="estrellas">★★★★★</span>
             </div>
           </div>
@@ -1160,13 +947,13 @@
         </div>
       </div>
 
-      <!-- VOZ -->
+      <!-- 7. VOZ -->
       <h2>7. Voz</h2>
       <p>
-        Tuteo, frases cortas, en positivo y sin culpa. Se dice qué pasó y qué puede hacer el usuario. Los números usan
-        coma decimal (37,5 h) y los meses van en minúscula.
+        Tuteo, frases cortas, sin culpa ni exclamaciones. Titulares y botones en mayúsculas; el resto en frase normal.
+        Coma decimal (37,5 h) y meses en minúscula.
       </p>
-      <table class="sino">
+      <table>
         <thead>
           <tr>
             <th>Sí</th>

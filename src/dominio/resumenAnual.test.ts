@@ -101,17 +101,18 @@ describe('género más visto (D8)', () => {
 
   it('empate: gana el de mayor promedio de calificación personal', () => {
     const items = [
-      obra({ generos: ['Drama'], calificacionPersonal: 3 }),
-      obra({ generos: ['Drama'], calificacionPersonal: 3 }),
-      obra({ generos: ['Comedia'], calificacionPersonal: 5 }),
-      obra({ generos: ['Comedia'], calificacionPersonal: null }),
+      // Comedia va antes en el alfabeto: si ganara, el promedio no se estaría usando.
+      obra({ generos: ['Comedia'], calificacionPersonal: 3 }),
+      obra({ generos: ['Comedia'], calificacionPersonal: 3 }),
+      obra({ generos: ['Drama'], calificacionPersonal: 5 }),
+      obra({ generos: ['Drama'], calificacionPersonal: null }),
     ];
-    expect(resumenAnual(items, 2026).generoTop).toEqual({ nombre: 'Comedia', obras: 2 });
+    expect(resumenAnual(items, 2026).generoTop).toEqual({ nombre: 'Drama', obras: 2 });
   });
 
   it('empate: un género sin obras calificadas pierde', () => {
-    const items = [obra({ generos: ['Acción'], calificacionPersonal: 1 }), obra({ generos: ['Drama'] })];
-    expect(resumenAnual(items, 2026).generoTop?.nombre).toBe('Acción');
+    const items = [obra({ generos: ['Acción'] }), obra({ generos: ['Drama'], calificacionPersonal: 1 })];
+    expect(resumenAnual(items, 2026).generoTop?.nombre).toBe('Drama');
   });
 
   it('empate en obras y en promedio: orden alfabético', () => {
